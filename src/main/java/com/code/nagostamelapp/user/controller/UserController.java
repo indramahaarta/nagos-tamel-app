@@ -3,7 +3,7 @@ package com.code.nagostamelapp.user.controller;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.model.dto.UserModelDTO;
 import com.code.nagostamelapp.user.service.UserService;
-import com.code.nagostamelapp.user.util.SessionHandling;
+import com.code.nagostamelapp.util.SessionHandling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

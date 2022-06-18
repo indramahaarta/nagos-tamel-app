@@ -26,6 +26,12 @@ public class UserModel {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "user_token_ovo")
+    private String ovoToken;
+
+    @Column(name = "user_token_BCI")
+    private String BCIToken;
+
     @Column(name = "planning_set")
     @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
     private Set<Planning> planningSet;
