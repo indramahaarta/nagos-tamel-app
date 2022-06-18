@@ -1,6 +1,7 @@
 package com.code.nagostamelapp.bankBCI.controller;
 
 import com.code.nagostamelapp.user.model.UserModel;
+import com.code.nagostamelapp.user.repository.UserRepository;
 import com.code.nagostamelapp.user.service.UserService;
 import com.code.nagostamelapp.util.AuthAPIHandling;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -17,6 +18,9 @@ import javax.servlet.http.HttpSession;
 public class BankBCIController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/auth-BCI")
     public String getAuthBCIPage(HttpSession session) {
@@ -35,6 +39,7 @@ public class BankBCIController {
             String user_token_BCI = myObj.getString("data");
             UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
             userModel.setBCIToken(user_token_BCI);
+            userRepository.save(userModel);
             return "redirect:/overview-page";
         }
         else if(status == 401){
