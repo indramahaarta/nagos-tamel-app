@@ -15,22 +15,22 @@
 <body>
 <div class="alert-message">
   <div th:if="${param.error1}" class="alert alert-danger alert-dismissible fade show">
-    Invalid Link. Please Copy Link that you receivee
+    Unauthorized. Wrong username or password.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <div th:if="${param.error2}" class="alert alert-danger alert-dismissible fade show">
-    Invalid Security code, please re-authenticate
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <div th:if="${param.error3}" class="alert alert-danger alert-dismissible fade show">
     Error. Please try again.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 </div>
-<form th:action="@{/insertOvoPIN}" method="post">
+<form th:action="@{/auth-BCI}" method="post">
   <div class="form-group">
-    <label>PIN</label>
-    <input class="form-control" th:name="PIN" placeholder="Enter your PIN">
+    <label>User ID</label>
+    <input class="form-control" th:name="user" placeholder="Enter your User ID" required>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type = "password" class="form-control" th:name="password" placeholder="Enter your password" required>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

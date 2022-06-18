@@ -27,6 +27,11 @@ public class UserModel {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "user_token_ovo")
+    private String ovoToken;
+
+    @Column(name = "user_token_BCI")
+    private String BCIToken;
     @Override
     public String toString() {
         return "User{" +
