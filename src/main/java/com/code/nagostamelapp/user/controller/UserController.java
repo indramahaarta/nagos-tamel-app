@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping("/register")
     public String getRegisterPage(Model model){
         model.addAttribute("registerRequest", new UserModel());
-        return "register_page";
+        return "user/register_page";
     }
 
     @PostMapping("/register")
@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("/login")
     public String getLoginPage(Model model){
         model.addAttribute("loginRequest", new UserModel());
-        return "login_page";
+        return "user/login_page";
     }
 
     @PostMapping("/login")
@@ -59,6 +59,11 @@ public class UserController {
         if(username == null){
             return "redirect:/login";
         }
-        return "overview_page";
+        return "user/overview_page";
+    }
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/login";
     }
 }
