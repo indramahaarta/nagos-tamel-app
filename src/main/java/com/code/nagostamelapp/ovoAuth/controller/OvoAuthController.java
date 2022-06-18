@@ -75,7 +75,7 @@ public class OvoAuthController{
         String username = (String) session.getAttribute("username_ovo");
         String refId = (String) session.getAttribute("refId_ovo");
         String deviceId = (String) session.getAttribute("deviceId_ovo");
-        JSONObject myObj = AuthAPIHandling.getInstance().handleInsertOTPEWallet(username, refId, OTP, PIN, deviceId);
+        JSONObject myObj = AuthAPIHandling.getInstance().handleInsertOTPOvo(username, refId, OTP, PIN, deviceId);
         int status = myObj.getInt("status");
         System.out.println(myObj);
         if(status == 200){

@@ -14,30 +14,33 @@
   <link rel="stylesheet" th:href="@{/css/ovoAuth/signup.css}" />
 </head>
 <body>
-<div class="alert-message" style="margin: 0 auto; width: 40vw;">
+<div class="alert-message" style="margin: 10vh auto 0 auto;width: 40vw;">
   <div th:if="${param.error1}" class="alert alert-danger alert-dismissible fade show" style="text-align: center;">
-    Unauthorized. Wrong username or password.
+    Mobile number is not registered
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <div th:if="${param.error2}" class="alert alert-danger alert-dismissible fade show" style="text-align: center;">
     Error. Please try again.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
+  <div th:if="${param.error3}" class="alert alert-danger alert-dismissible fade show" style="text-align: center;">
+    Invalid Phone number format
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div th:if="${param.error4}" class="alert alert-danger alert-dismissible fade show" style="text-align: center;">
+    Your account is blocked. Please try again after 15 minutes
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 </div>
-<form th:action="@{/auth-BCI}" method="post">
+<form th:action="@{/gopay-OTP}" method="post">
   <div class="card">
     <h1>Masuk Ke Akun-mu!</h1>
     <div class="isi">
-      <p>User ID:</p>
-      <input type="field" th:name="user" required/>
-    </div>
-    <div class="isi">
-      <p>Password:</p>
-      <input type="field" th:name="password" required/>
+      <p>No. Handphone:</p>
+      <input type="field" th:name="noHandphone" required/>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
 </body>
 </html>
-

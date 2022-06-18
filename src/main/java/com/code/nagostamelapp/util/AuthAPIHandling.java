@@ -29,15 +29,25 @@ public class AuthAPIHandling {
         return response.getBody().getObject();
     }
 
-    public JSONObject handleInsertOTPEWallet(String username, String refId, String otp, String pin, String deviceId) throws UnirestException {
+    public JSONObject handleInsertOTPOvo(String username, String refId, String otp, String pin, String deviceId) throws UnirestException {
         HttpResponse<JsonNode> response = Unirest.post("https://sandbox.onebrick.io/v1/auth/ovo")
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer public-sandbox-27444f4a-ac69-4710-ab4f-d075d1271219")
                 .body("{\"username\":\""+username+"\",\"refId\":\""+refId+"\",\"otpNumber\":\""+otp+"\",\"pin\":\""+pin+"\",\"deviceId\":\""+deviceId+"\"}")
                 .asJson();
-        System.out.println("{\"username\":\""+username+"\",\"refId\":\""+refId+"\",\"otpNumber\":\""+otp+"\",\"pin\":\""+pin+"\",\"deviceId\":\""+deviceId+"\"}");
+        return response.getBody().getObject();
+    }
 
+    public JSONObject handleInsertOTPGopay(String username, String uniqueId, String sessionId, String otpToken, String OTP) throws UnirestException {
+        System.out.println(OTP);
+        HttpResponse<JsonNode> response = Unirest.post("https://sandbox.onebrick.io/v1/auth/gopay")
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer public-sandbox-27444f4a-ac69-4710-ab4f-d075d1271219")
+                .body("{\"otp\":\""+OTP+"\",\"otpToken\":\""+otpToken+"\",\"sessionId\":\""+sessionId+"\",\"uniqueId\":\""+uniqueId+"\",\"username\":\""+username+"\"}")
+                .asJson();
+        System.out.println("{\"otp\":\""+OTP+"\",\"otpToken\":\""+otpToken+"\",\"sessionId\":\""+sessionId+"\",\"uniqueId\":\""+uniqueId+"\",\"username\":\""+username+"\"}");
         return response.getBody().getObject();
     }
 

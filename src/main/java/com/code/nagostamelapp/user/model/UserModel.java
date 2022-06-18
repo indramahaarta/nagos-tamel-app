@@ -32,6 +32,9 @@ public class UserModel {
     @Column(name = "user_token_BCI")
     private String BCIToken;
 
+    @Column(name = "user_token_Gopay")
+    private String GopayToken;
+
     @Column(name = "planning_set")
     @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
     private Set<Planning> planningSet;
