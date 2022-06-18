@@ -1,0 +1,10 @@
+package com.code.nagostamelapp.transaction.service;
+
+import com.code.nagostamelapp.transaction.model.Transaction;
+
+import java.util.List;
+
+public interface TransactionService {
+    List<Transaction> sortByDate(String username);
+    void saveTransaction(Transaction transaction);
+}
