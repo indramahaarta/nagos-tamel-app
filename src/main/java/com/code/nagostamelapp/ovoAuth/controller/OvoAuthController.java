@@ -20,6 +20,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class OvoAuthController{
+    //udah sampe dapetin user access token buat ovo
+    //user access tokennya disimpen di db buat get transaction list, balance
+    //belom erorr handling samsek
     @Autowired
     private UserService userService;
 
