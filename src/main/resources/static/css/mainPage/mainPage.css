@@ -21,7 +21,7 @@
 
 /* || body */
 span.line {
-    background: url("images/line-biru.png") no-repeat bottom;
+    background: url("../../images/line-biru.png") no-repeat bottom;
 }
 span.biru {
     color: var(--main-blue);
@@ -71,7 +71,7 @@ section.header .right img {
 
 /* ||| section keunggulan */
 section.keunggulan {
-    background-image: url("images/background-blur-blue-circle.png");
+    background-image: url("../../images/background-blur-blue-circle.png");
     background-repeat: no-repeat;
     background-position: 50% 100%;
     background-size: 100% 100%;
