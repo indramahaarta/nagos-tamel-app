@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    --main-blue: #0096a3;
+    --background-white: #fff;
+    --gradient-orange: linear-gradient(
+            to bottom right,
+            #ff8525 0%,
+            #ffb074 100%
+    );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* || body */
+span.line {
+    background: url("images/line-biru.png") no-repeat bottom;
+}
+span.biru {
+    color: var(--main-blue);
+}
+
+section {
+    max-width: 1200px;
+    width: 90vw;
+
+    margin: 0 auto;
+}
+
+/* ||| section header */
+
+section.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 90vh; */
+    padding: 7em 0;
+}
+section.header button {
+    margin-top: 15px;
+    font-size: 25px;
+    padding: 2px 15px;
+    border-radius: 50px;
+    border-color: var(--main-blue);
+    transition: all 0.3s ease 0s;
+    background-color: var(--main-blue);
+    color: white;
+    border: 2px solid var(--main-blue);
+    cursor: pointer;
+}
+section.header .left {
+    align-items: center;
+    margin-right: 10px;
+    width: 50%;
+}
+section.header .left h1 {
+    font-size: 2em;
+    font-weight: 600;
+}
+section.header .right img {
+    width: 35vw;
+    max-width: 500px;
+}
+
+/* ||| section keunggulan */
+section.keunggulan {
+    background-image: url("images/background-blur-blue-circle.png");
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% 100%;
+    padding: 0 0 5em 0;
+}
+section.keunggulan .title {
+    display: flex;
+}
+section.keunggulan h2 {
+    margin: auto;
+    font-weight: 600;
+}
+section.keunggulan .content {
+    margin-top: 2em;
+    padding-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+section.keunggulan .content .card {
+    width: 32%;
+    /* height: 400px; */
+    padding: 1em 2em 4em 2em;
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+section.keunggulan .content .card h3 {
+    font-weight: 600;
+}
+section.keunggulan .content .card p {
+    text-align: justify;
+    color: #747474;
+}
+section.keunggulan .content .card button {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -70%);
+    padding: 2px 15px;
+    font-size: 15px;
+    border-radius: 50px;
+    background-color: var(--main-blue);
+    cursor: pointer;
+    color: white;
+    border: 2px solid var(--main-blue);
+}
+
+/* ||| section about us */
+.outer-bg {
+    background-color: rgba(0, 150, 163, 0.1);
+}
+section.about-us {
+    padding: 3em 0;
+}
+section.about-us h2 {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+section.about-us .content {
+    display: flex;
+    justify-content: space-between;
+}
+section.about-us .content .left {
+    display: flex;
+}
+section.about-us .content .left img {
+    /* max-height: 30vh; */
+    /* width: 100%; */
+    object-fit: contain;
+    align-items: center;
+}
+section.about-us .content .right {
+    margin-left: 3em;
+    width: 80%;
+}
+section.about-us .content p {
+    font-size: 1.5em;
+    color: #747474;
+    text-align: justify;
+    width: 100%;
+}
+
+/* ||| section our team */
+.outer-our-team {
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+section.our-team h2 {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+section.our-team .content {
+    display: flex;
+    justify-content: space-between;
+}
+section.our-team .content .card {
+    width: 24.5%;
+    /* background-color: orange; */
+    text-align: center;
+    padding: 1em 1em;
+}
+section.our-team .content .card img {
+    width: 60%;
+    border-radius: 100px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+}
+section.our-team .content .card h3 {
+    font-weight: 600;
+}
