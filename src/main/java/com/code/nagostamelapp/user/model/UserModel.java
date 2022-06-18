@@ -1,12 +1,11 @@
 package com.code.nagostamelapp.user.model;
 
+import com.code.nagostamelapp.financialPlanning.model.Planning;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,6 +25,10 @@ public class UserModel {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "planning_set")
+    @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
+    private Set<Planning> planningSet;
 
     @Override
     public String toString() {
