@@ -1,0 +1,46 @@
+<nav th:fragment="navbar" class="navbar">
+    <div class="center">
+        <div class="left-content">
+            <li>
+                <a href="" style="color: #383d3b">
+                    <strong style="color: #0096a3">Piggy</strong> Saver</a
+                >
+            </li>
+        </div>
+
+        <ul class="menu-list">
+            <li><a href="#" id="home">Home</a></li>
+            <li><a href="#" id="dashboard">Dashboard</a></li>
+            <!-- <button id="login-btn">Masuk</button>
+            <button id="sign-up-btn">Daftar</button> -->
+            <!-- ini buat yg udah authenticated -->
+            <!-- source https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+
+            <li>
+                <a href="#" class="name"
+                >Hi,&nbsp;<span id="nama-user">Adham</span>!</a
+                >
+            </li>
+
+            <svg
+                    width="80"
+                    height="72"
+                    viewBox="0 0 80 72"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="logout-btn"
+            >
+                <path
+                        d="M60 16L54.36 21.64L64.68 32H24V40H64.68L54.36 50.32L60 56L80 36L60 16ZM8 8H40V0H8C3.6 0 0 3.6 0 8V64C0 68.4 3.6 72 8 72H40V64H8V8Z"
+                        fill="black"
+                />
+            </svg>
+        </ul>
+        <div class="icon cancel-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div id="menu-btn" class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>

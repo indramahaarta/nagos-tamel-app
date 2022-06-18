@@ -19,7 +19,7 @@ public class AuthAPIHandling {
         }
         return authAPIHandling;
     }
-    public JSONObject handleRequestOTPEwallet(String username, String code) throws UnirestException {
+    public JSONObject handleRequestOTPEwallet(String code, String username) throws UnirestException {
         HttpResponse<JsonNode> response = Unirest.post("https://sandbox.onebrick.io/v1/auth/")
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
@@ -36,6 +36,8 @@ public class AuthAPIHandling {
                 .header("Authorization", "Bearer public-sandbox-27444f4a-ac69-4710-ab4f-d075d1271219")
                 .body("{\"username\":\""+username+"\",\"refId\":\""+refId+"\",\"otpNumber\":\""+otp+"\",\"pin\":\""+pin+"\",\"deviceId\":\""+deviceId+"\"}")
                 .asJson();
+        System.out.println("{\"username\":\""+username+"\",\"refId\":\""+refId+"\",\"otpNumber\":\""+otp+"\",\"pin\":\""+pin+"\",\"deviceId\":\""+deviceId+"\"}");
+
         return response.getBody().getObject();
     }
 
