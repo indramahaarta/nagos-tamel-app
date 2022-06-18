@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Piggy Saver | Nagos Tamel</title>
+    <script
+            src="https://kit.fontawesome.com/6e024d5b6e.js"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/mainPage/mainPage.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/navbar.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<nav th:fragment="navbar" class="navbar">
+    <div class="center">
+        <div class="left-content">
+            <li>
+                <a href="/" style="color: #383d3b">
+                    <strong style="color: #0096a3">Piggy</strong> Saver</a
+                >
+            </li>
+        </div>
+
+        <ul class="menu-list">
+            <li><a href="#" id="home">Home</a></li>
+            <li><a href="#" id="dashboard">Dashboard</a></li>
+            <!-- <button id="login-btn">Masuk</button>
+            <button id="sign-up-btn">Daftar</button> -->
+            <!-- ini buat yg udah authenticated -->
+            <!-- source https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+
+            <li>
+                <a href="#" class="name"
+                >Hi,&nbsp;<span id="nama-user">Adham</span>!</a
+                >
+            </li>
+
+            <svg
+                    width="80"
+                    height="72"
+                    viewBox="0 0 80 72"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="logout-btn"
+            >
+                <path
+                        d="M60 16L54.36 21.64L64.68 32H24V40H64.68L54.36 50.32L60 56L80 36L60 16ZM8 8H40V0H8C3.6 0 0 3.6 0 8V64C0 68.4 3.6 72 8 72H40V64H8V8Z"
+                        fill="black"
+                />
+            </svg>
+        </ul>
+        <div class="icon cancel-btn">
+            <i class="fas fa-times"></i>
+        </div>
+        <div id="menu-btn" class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+<body>
+<section class="header">
+    <div class="left">
+        <h1>
+            Kelola Transaksi Dengan Mudah Bersama
+            <span class="line">Piggy Saver!</span>
+        </h1>
+        <button>Coba Sekarang!</button>
+    </div>
+    <div class="right">
+        <img th:src="@{/images/hero.png}" alt="" />
+    </div>
+</section>
+<section class="keunggulan">
+    <div class="title">
+        <h2>
+            <span class="line">Keunggulan</span> Menggunakan
+            <span class="biru">Piggy</span> Saver
+        </h2>
+    </div>
+    <div class="content">
+        <div class="card">
+            <img th:src="@{/images/transaction.png}" alt="" />
+            <h3>Pencatatan Transaksi</h3>
+            <p>
+                Dengan mudah, kamu dapat melihat transaksi apa saja yang
+                telah kamu lakukan di seluruh platform dalam suatu range
+                waktu.
+            </p>
+            <button>Coba Sekarang!</button>
+        </div>
+        <div class="card">
+            <img th:src="@{images/dart.png}" alt="" />
+            <h3>
+                Raih Barang Impianmu dengan
+                <span class="biru">Dream Piggy</span>
+            </h3>
+            <p></p>
+            <button>Coba Sekarang!</button>
+        </div>
+        <div class="card">
+            <img th:src="@{images/pinjol.png}" alt="" />
+            <h3>Pinjaman Mudah</h3>
+            <p></p>
+            <button>Coba Sekarang!</button>
+        </div>
+    </div>
+</section>
+<div class="outer-bg">
+    <section class="about-us">
+        <h2><span class="line">Tentang Kami</span></h2>
+        <div class="content">
+            <div class="left">
+                <img th:src="@{images/logo-about-us.png}" alt="" />
+            </div>
+            <div class="right">
+                <p>
+                    Dengan semakin meningkatnya jumlah akun bank dan
+                    e-wallet yang dimiliki pengguna, semakin sulit untuk
+                    mengatur keuangan. Aplikasi ini hadir untuk membantu
+                    masyarakat memecahkan permasalahan tersebut dan
+                    meningkatnya literasi keuangan di kalangan
+                    masyarakat saat ini menyadarkan akan pentingnya
+                    pengelolaan keuangan. Aplikasi ini memiliki fitur
+                    yang mengintegrasikan dompet digital pengguna dan
+                    bank untuk melihat keuangan secara keseluruhan dan
+                    memudahkan pengelolaan keuangan pengguna.
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="outer-our-team">
+    <section class="our-team">
+        <h2><span class="line">Tim Kami</span></h2>
+        <div class="content">
+            <div class="card">
+                <img th:src="@{images/indra.jpg}" alt="" />
+                <h3>I Made Indra Mahaarta</h3>
+                <p>Ilmu Komputer</p>
+                <p>Universitas Indonesia</p>
+            </div>
+            <div class="card">
+                <img th:src="@{images/ricky.jpg}" alt="" />
+                <h3>Rickyanto Wangsa Mulya</h3>
+                <p>Ilmu Komputer</p>
+                <p>Universitas Indonesia</p>
+            </div>
+            <div class="card">
+                <img th:src="@{images/rizqi.png}" alt="" />
+                <h3>Muhammad Rizqi Rizaldi</h3>
+                <p>Ilmu Komputer</p>
+                <p>Universitas Indonesia</p>
+            </div>
+            <div class="card">
+                <img th:src="@{images/adham.png}" alt="" />
+                <h3>Adham Muhammad Farid</h3>
+                <p>Sistem Informasi</p>
+                <p>Universitas Indonesia</p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+<footer>
+    <div th:replace="fragment/footer :: footer"></div>
+</footer>
+</html>
+
+<script>
+    const navbar = document.querySelector(".navbar");
+    const logo = document.querySelector(".logo-navbar");
+    const body = document.querySelector("body");
+    const menu = document.querySelector(".menu-list");
+    const menuBtn = document.querySelector(".menu-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    menuBtn.onclick = () => {
+        menu.classList.add("active");
+        menuBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+        body.classList.add("disabledScroll");
+    };
+    cancelBtn.onclick = () => {
+        menu.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        body.classList.remove("disabledScroll");
+    };
+
+    window.onscroll = function () {
+        if (this.scrollY > 20) {
+            navbar.classList.add("sticky");
+            navbar.classList.add("shadow");
+            logo.classList.add("shrink");
+        } else {
+            navbar.classList.remove("sticky");
+            navbar.classList.remove("shadow");
+            logo.classList.remove("shrink");
+        }
+    };
+</script>

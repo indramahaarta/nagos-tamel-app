@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    --main-blue: #0096a3;
+    --background-white: #fff;
+    --gradient-orange: linear-gradient(
+            to bottom right,
+            #ff8525 0%,
+            #ffb074 100%
+    );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* start breadcrumb */
+/* Style the list */
+section.upper ul.breadcrumb {
+    /* padding: 10px 16px 10px 0; */
+    margin: 10px 0;
+    list-style: none;
+}
+/* Display list items side by side */
+section.upper ul.breadcrumb li {
+    display: inline;
+    font-size: 0.9em;
+}
+/* Add a slash symbol (/) before/behind each list item */
+section.upper ul.breadcrumb li + li:before {
+    padding: 3px;
+    color: #888888;
+    content: "/\00a0";
+}
+/* Add a color to all links inside the list */
+section.upper ul.breadcrumb li a {
+    color: #888888;
+    text-decoration: none;
+}
+/* Add a color on mouse-over */
+section.upper ul.breadcrumb li a:hover {
+    color: var(--main-blue);
+    text-decoration: underline;
+}
+@media (max-width: 450px) {
+    /* Display list items side by side */
+    section.upper ul.breadcrumb li {
+        font-size: 0.8em;
+    }
+}
+/* end breadcrumb */
+
+body {
+    background-color: var(--background-white);
+    margin-top: 100px;
+}
+
+#home {
+    font-weight: bold;
+}
+
+/* start of navbar */
+nav {
+    margin-top: -100px;
+    /* add margin-top 100px di body */
+    /* pakein padding-top di content pertama, bukan di body (gaguna jangan) */
+    position: fixed;
+    height: 100px;
+
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+.navbar.sticky {
+    padding: 10px 0;
+    height: 60px;
+    font-size: 16px;
+}
+.navbar.shadow {
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.05);
+}
+nav .center {
+    max-width: 1200px;
+    width: 90vw;
+    /* height: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .left-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav .left-content li {
+    list-style-type: none;
+}
+nav .left-content li a {
+    text-decoration: none;
+    color: var(--main-blue);
+}
+
+nav li .name {
+    margin-left: 10vw;
+}
+
+nav button {
+    font-size: 15px;
+    padding: 2px 15px;
+    border-radius: 50px;
+    border-color: var(--main-blue);
+    transition: all 0.3s ease 0s;
+}
+nav #login-btn {
+    background-color: transparent;
+    color: var(--main-blue);
+    border: 2px solid var(--main-blue);
+    margin-left: 40px;
+}
+nav #sign-up-btn {
+    background-color: var(--main-blue);
+    color: white;
+    border: 2px solid var(--main-blue);
+}
+nav #login-btn:hover,
+nav #sign-up-btn:hover {
+    cursor: pointer;
+    transform: translateY(-7px);
+}
+
+nav .menu-list {
+    list-style: none;
+}
+nav .menu-list li {
+    display: inline-block;
+    margin: 0 10px;
+}
+nav .menu-list li a {
+    text-decoration: none;
+    color: #383d3b;
+}
+.navbar .center .icon {
+    color: var(--main-blue);
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+.navbar .center .icon.cancel-btn {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.logout-btn {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    color: #0096a3;
+}
+
+body.disabledScroll {
+    overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+    nav {
+        font-size: 16px;
+    }
+    nav button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 868px) {
+    .navbar {
+        height: 80px;
+    }
+    .navbar .logo-navbar {
+        width: 70px;
+    }
+
+    body.disabledScroll {
+        overflow: hidden;
+    }
+
+    .navbar .center .icon {
+        display: block;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 50%;
+        z-index: 9;
+    }
+    .navbar .center .icon.cancel-btn {
+        display: none;
+    }
+    .navbar .center .icon.cancel-btn.show {
+        display: block;
+        padding-top: 5px;
+        padding-right: 11px;
+    }
+    .logout-btn {
+        justify-content: center;
+    }
+    .navbar .center .icon.hide {
+        display: none;
+    }
+    .navbar .center .menu-list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 40vh;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* display: block; */
+        /* padding: 40px 0; */
+        text-align: center;
+        clip-path: circle(25px at calc(100% - 55px) calc(0% + 50px));
+        transition: all 0.3s ease;
+        box-shadow: 0 16px 20px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .navbar.sticky .menu-list {
+        clip-path: circle(25px at calc(100% - 55px) calc(0% + 35px));
+    }
+    .navbar .menu-list.active {
+        clip-path: circle(75%);
+    }
+    .navbar .menu-list li {
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+    nav li .name {
+        margin-left: 0;
+    }
+    .menu-list svg {
+        margin: 10px auto;
+    }
+
+    .navbar .menu-list #login-btn,
+    .navbar .menu-list #sign-up-btn {
+        margin: 15px auto 0 auto;
+        width: 200px;
+    }
+    .navbar .menu-list li a {
+        font-size: 18px;
+    }
+    @media screen and (max-width: 580px) {
+        .navbar .center .icon.cancel-btn.show {
+            padding-top: 5px;
+            padding-right: 0px;
+        }
+    }
+}
+/* end of navbar */
