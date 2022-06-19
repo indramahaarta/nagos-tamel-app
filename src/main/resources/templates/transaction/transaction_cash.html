@@ -15,57 +15,69 @@
 </head>
 
 <body>
-<form th:action="@{/ovoOTP}" method="post">
-    <div class="card">
-        <h1>Masuk Ke Akun-mu!</h1>
-        <div class="isi">
-            <p>No. Handphone:</p>
-            <input type="field" th:name="noHandphone" required/>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
-
 <form th:action="@{/transaction-cash}" th:object="${cashTransaction}" method="post">
     <div class="card">
-        <h1>Masuk Ke Akun-mu!</h1>
+        <h1>Masukkan detail transaksi cash kamu!</h1>
         <div class="isi">
-            <p>No. Handphone:</p>
-            <input type="field" th:name="noHandphone" required/>
+            <p>Tanggal:</p>
+            <input id="date" type="date" name="date" th:field="*{date}" required/>
+        </div>
+        <div class="isi">
+            <p>Nominal:</p>
+            <input id="amount" type="number" name="amount" th:field="*{amount}" required/>
+        </div>
+        <div class="isi">
+            <p>Deskripsi:</p>
+            <input id="description" type="text" name="description" th:field="*{description}" required/>
+        </div>
+        <div class="isi">
+            <p>Status:</p>
+            <input id="status" type="text" name="status" th:field="*{status}" required/>
+        </div>
+        <div class="isi">
+            <p>Tipe transaksi:</p>
+            <select th:field="*{direction}" name="direction" class="form-select" id="direction" required>-->
+                <option value="" selected hidden>Choose transaction type...</option>
+                <option value="in" >Pemasukan</option>
+                <option value="out">Pengeluaran</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
-    <div class="form-group">
-        <label class="form-label" for="date">Date</label>
-        <input id="date" type="date" name="date" th:field="*{date}" class="form-control" required/>
-    </div>
-
-    <div class="form-group">
-        <label class="form-label" for="amount">Amount</label>
-        <input id="amount" type="number" name="amount" th:field="*{amount}" class="form-control" required/>
-    </div>
-
-    <div class="form-group">
-        <label class="form-label" for="description">Description</label>
-        <input id="description" type="text" name="description" th:field="*{description}" class="form-control" required/>
-    </div>
-
-    <div class="form-group">
-        <label class="form-label" for="status">Status</label>
-        <input id="status" type="text" name="status" th:field="*{status}" class="form-control" required/>
-    </div>
-
-    <div class="form-group">
-        <label class="form-label" for="direction">Gender</label>
-        <select th:field="*{direction}" name="direction" class="form-select" id="direction" required>-->
-            <option value="" selected hidden>Choose transaction type...</option>
-            <option value="in" >Income</option>
-            <option value="out">Outcome</option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<!--<form th:action="@{/transaction-cash}" th:object="${cashTransaction}" method="post">-->
+
+<!--    <div class="form-group">-->
+<!--        <label class="form-label" for="date">Date</label>-->
+<!--        <input id="date" type="date" name="date" th:field="*{date}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label class="form-label" for="amount">Amount</label>-->
+<!--        <input id="amount" type="number" name="amount" th:field="*{amount}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label class="form-label" for="description">Description</label>-->
+<!--        <input id="description" type="text" name="description" th:field="*{description}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label class="form-label" for="status">Status</label>-->
+<!--        <input id="status" type="text" name="status" th:field="*{status}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label class="form-label" for="direction">Gender</label>-->
+<!--        <select th:field="*{direction}" name="direction" class="form-select" id="direction" required>&ndash;&gt;-->
+<!--            <option value="" selected hidden>Choose transaction type...</option>-->
+<!--            <option value="in" >Income</option>-->
+<!--            <option value="out">Outcome</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
 </body>
 </html>
