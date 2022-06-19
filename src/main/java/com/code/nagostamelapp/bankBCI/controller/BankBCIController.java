@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -43,20 +44,11 @@ public class BankBCIController {
             UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
             userModel.setBCIToken(user_token_BCI);
             userRepository.save(userModel);
-            return "redirect:/overview-page";
+            return "redirect:/dashboard";
         }
         else if(status == 401){
             return "redirect:/auth-BCI?error1";
         }
         return "redirect:/auth-BCI?error2";
-    }
-    @GetMapping("/get-balance-bci")
-    public float getBankBCIBalance(HttpSession session) throws UnirestException {
-        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
-        String bankBCIToken = userModel.getBCIToken();
-        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(bankBCIToken, "BCI", session);
-        userModel.setBCIBalance(balance);
-        userRepository.save(userModel);
-        return balance;
     }
 }

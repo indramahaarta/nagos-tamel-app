@@ -133,7 +133,7 @@
                     <p>Total</p>
                 </div>
                 <div class="right">
-                    <p>Rp 50,000</p>
+                    <p th:text="Rp + ${total}"></p>
                 </div>
             </div>
             <div class="container cash">
@@ -142,7 +142,7 @@
                     <p>Cash</p>
                 </div>
                 <div class="right">
-                    <p>Rp 50,000</p>
+                    <p th:text="Rp + ${cash}"></p>
                 </div>
             </div>
             <div class="container gopay">
@@ -151,7 +151,10 @@
                     <p>Gopay</p>
                 </div>
                 <div class="right">
-                    <p>Rp 50,000</p>
+                    <div th:if="${user.gopayToken == null}">
+                        <a th:href="@{/gopay-OTP}"><button type="button" class="button active">Connect</button></a>
+                    </div>
+                    <p th:if="${user.gopayToken != null}" th:text="Rp + ${gopay}"></p>
                 </div>
             </div>
             <div class="container ovo">
@@ -160,7 +163,10 @@
                     <p>OVO</p>
                 </div>
                 <div class="right">
-                    <p>Rp 50,000</p>
+                    <div th:if="${user.ovoToken == null}">
+                        <a th:href="@{/ovoOTP}"><button type="button" class="button active">Connect</button></a>
+                    </div>
+                    <p th:if="${user.ovoToken != null}" th:text="Rp + ${ovo}"></p>
                 </div>
             </div>
             <div class="container bci">
@@ -169,7 +175,10 @@
                     <p>BCI</p>
                 </div>
                 <div class="right">
-                    <p>Rp 50,000</p>
+                    <div th:if="${user.BCIToken == null}">
+                        <a th:href="@{/auth-BCI}"><button type="button" class="button active">Connect</button></a>
+                    </div>
+                    <p th:if="${user.BCIToken != null}" th:text="Rp + ${bci}"></p>
                 </div>
             </div>
         </div>
@@ -284,10 +293,10 @@
     let ovoSaldo = document.getElementById("dummy-ovo");
     let bciSaldo = document.getElementById("dummy-bci");
 
-    cashSaldo = 200;
-    gopaySaldo = 500;
-    ovoSaldo = 200;
-    bciSaldo = 200;
+    cashSaldo = [[${cash}]];
+    gopaySaldo = [[${gopay}]];
+    ovoSaldo = [[${ovo}]];
+    bciSaldo = [[${bci}]];
 
     const myChart = new Chart(ctx, {
         type: "doughnut",
