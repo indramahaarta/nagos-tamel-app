@@ -1,5 +1,6 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.dashboard.service.DashboardService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.service.UserService;
@@ -27,9 +28,15 @@ public class DashBoardOvoController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    DashboardService dashboardService;
     @GetMapping(path = "/ovo")
     public String getTransactionListOvo(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String ovoToken = user.getOvoToken();
 
@@ -78,7 +85,6 @@ public class DashBoardOvoController {
         } else if (status == 401 && myObj.getString("error_message").equals("Invalid user-access-token")) {
             return "redirect:/ovoOTP";
         }
-
         return "redirect:/dashboard/ovo";
     }
 }

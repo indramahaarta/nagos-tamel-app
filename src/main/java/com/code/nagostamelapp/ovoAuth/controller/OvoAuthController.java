@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +85,7 @@ public class OvoAuthController{
             UserModel user = userService.getUserByUsername(userService.getUsernameFromSession(session));
             user.setOvoToken(user_token_ovo);
             userRepository.save(user);
-            return "redirect:/overview-page";
+            return "redirect:/dashboard";
         }
         else if(status == 401 &&  myObj.getString("data").equals("Invalid Link. Please Copy Link that you receivee")){
             return "redirect:/insertOvo?error1";
@@ -96,14 +97,5 @@ public class OvoAuthController{
             return "redirect:/insertOvo?error4";
         }
         return "redirect:/insertOvo?error3";
-    }
-    @GetMapping("/get-balance-ovo")
-    public float getOvoBalance(HttpSession session) throws UnirestException {
-        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
-        String ovoToken = userModel.getOvoToken();
-        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(ovoToken, "ovo", session);
-        userModel.setGopayBalance(balance);
-        userRepository.save(userModel);
-        return balance;
     }
 }

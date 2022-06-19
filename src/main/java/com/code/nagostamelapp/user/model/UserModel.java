@@ -33,16 +33,7 @@ public class UserModel {
     private String BCIToken;
 
     @Column(name = "user_token_Gopay")
-    private String GopayToken;
-
-    @Column(name = "balance_BCI")
-    private Float BCIBalance;
-
-    @Column(name = "balance_gopay")
-    private Float gopayBalance;
-
-    @Column(name = "balance_ovo")
-    private Float ovoBalance;
+    private String gopayToken;
 
     @Column(name = "balance_cash")
     private Float cashBalance;

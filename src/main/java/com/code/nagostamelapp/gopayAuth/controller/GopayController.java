@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -83,7 +84,7 @@ public class GopayController {
             UserModel user = userService.getUserByUsername(userService.getUsernameFromSession(session));
             user.setGopayToken(user_token_gopay);
             userRepository.save(user);
-            return "redirect:/overview-page";
+            return "redirect:/dashboard";
         }
         else if(status == 401 &&  myObj.getString("data").equals("OTP code is expired. Try to resend code.")){
             return "redirect:/insertGopay?error1";
@@ -98,15 +99,5 @@ public class GopayController {
             return "redirect:/insertGopay?error5";
         }
         return "redirect:/insertGopay?error3";
-    }
-
-    @GetMapping("/get-balance-gopay")
-    public float getGopayBalance(HttpSession session) throws UnirestException {
-        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
-        String gopayToken = userModel.getGopayToken();
-        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(gopayToken, "gopay", session);
-        userModel.setGopayBalance(balance);
-        userRepository.save(userModel);
-        return balance;
     }
 }
