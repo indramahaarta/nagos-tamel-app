@@ -17,10 +17,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-
-  <div>Financial Planning Form</div>
-
   <form method="post" th:action="@{/financial-planning/save}" th:object="${planning}">
+      <h2>Financial Planning Form</h2>
 
       <div class="form-group">
           <label for="target">Target</label>
