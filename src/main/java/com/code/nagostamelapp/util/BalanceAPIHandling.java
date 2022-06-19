@@ -31,7 +31,7 @@ public class BalanceAPIHandling {
         }
         return balanceAPIHandling;
     }
-    public float handleGetBalance(String token, String code, HttpSession session) throws UnirestException {
+    public Float handleGetBalance(String token, String code, HttpSession session) throws UnirestException {
         HttpResponse<JsonNode> response = Unirest.get("https://sandbox.onebrick.io/v1/account/list")
                 .header("Accept", "application/json")
                 .header("Authorization", "Bearer " + token)
@@ -40,14 +40,13 @@ public class BalanceAPIHandling {
         int status = obj.getInt("status");
         String message = obj.getString("message");
         System.out.println(obj);
-        if(status == 200 && message.equals("OK")) {
+        if (status == 200 && message.equals("OK")) {
             JSONArray array = obj.getJSONArray("data");
             JSONObject balances = array.getJSONObject(0).getJSONObject("balances");
-            float balance = BigDecimal.valueOf(balances.getDouble("available")).floatValue();
+            Float balance = BigDecimal.valueOf(balances.getDouble("available")).floatValue();
             System.out.print(balance);
             return balance;
         }
-        return 0;
+        return (float) 0;
     }
-
 }

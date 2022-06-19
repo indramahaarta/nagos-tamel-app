@@ -6,6 +6,9 @@ import com.code.nagostamelapp.transaction.service.TransactionService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.service.UserService;
+import com.code.nagostamelapp.dashboard.service.DashboardService;
+
+
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,15 +16,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
 import java.util.*;
+
 
 @Controller
 @RequestMapping(path = "/dashboard")
 public class DashboardController {
     @Autowired
-    private UserService userService;
+    UserService userService;
+
+    @Autowired
+    DashboardService dashboardService;
 
     @Autowired
     private TransactionService transactionService;
@@ -32,6 +41,10 @@ public class DashboardController {
     @GetMapping(path = "")
     public String getDashBoard(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String gopayToken = user.getGopayToken();
         String ovoToken = user.getOvoToken();
@@ -62,8 +75,14 @@ public class DashboardController {
     }
 
     @GetMapping(path = "/dream-piggy")
-    public String getDashboardDreampiggy(Model model, HttpSession session) {
+    public String getDashboardDreampiggy(Model model, HttpSession session) throws UnirestException {
+        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+
+        if(username == null){
+            return "redirect:/login";
+        }
+
         UserModel user = userService.getUserByUsername(username);
         List<PlanningResponseDTO> dtos = planningService.findByUserModel(user);
 
