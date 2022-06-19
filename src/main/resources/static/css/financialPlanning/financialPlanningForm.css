@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 span.line {
-    background: url("../../images/line-biru.png") no-repeat bottom;
+    background: url("images/line-biru.png") no-repeat bottom;
 }
 span.biru {
     color: var(--main-blue);
@@ -92,4 +92,51 @@ section.container .button-container .inner-container button {
     color: white;
     font-weight: 600;
     border: none;
+}
+
+/* section iklan */
+.market-container .wrapper {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+}
+.market-container .wrapper .ads-container {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    cursor: pointer;
+    background-color: #cceaed;
+    height: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.market-container a {
+    text-decoration: none;
+    color: black;
+}
+.market-container .ads-container {
+    border-radius: 20px;
+}
+.market-container .ads-container img {
+    width: 200px;
+    height: 200px;
+    /* height: fit-content; */
+    border-radius: 20px 0 0 20px;
+}
+.market-container .ads-container .desc {
+    padding: 1em 1em 0 1em;
+    width: 300px;
+}
+.market-container .ads-container .desc h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+.market-container .ads-container .desc h3 {
+    font-size: 1.5em;
+}
+.market-container .ads-container .desc .rating {
+    display: flex;
+}
+.market-container .ads-container .desc .rating img {
+    width: 15px;
+    height: 17px;
 }

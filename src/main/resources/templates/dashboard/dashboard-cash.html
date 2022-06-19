@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard | Piggy Saver | Nagos Tamel</title>
+    <title>Dashboard | Piggy Tracker | Nagos Tamel</title>
 
     <script
             src="https://kit.fontawesome.com/6e024d5b6e.js"
@@ -20,58 +20,60 @@
 <nav class="navbar">
     <div class="center">
         <div class="left-content">
-            <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 36 36"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-                <mask
-                        id="mask0_109_116"
-                        style="mask-type: alpha"
-                        maskUnits="userSpaceOnUse"
-                        x="0"
-                        y="0"
+            <a href="/">
+                <svg
                         width="36"
                         height="36"
+                        viewBox="0 0 36 36"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                    <rect width="36" height="36" fill="url(#pattern0)" />
-                </mask>
-                <g mask="url(#mask0_109_116)">
-                    <rect
-                            x="-41"
-                            y="-43"
-                            width="156"
-                            height="131"
-                            fill="#383D3B"
-                    />
-                </g>
-                <defs>
-                    <pattern
-                            id="pattern0"
-                            patternContentUnits="objectBoundingBox"
-                            width="1"
-                            height="1"
+                    <mask
+                            id="mask0_109_116"
+                            style="mask-type: alpha"
+                            maskUnits="userSpaceOnUse"
+                            x="0"
+                            y="0"
+                            width="36"
+                            height="36"
                     >
-                        <use
-                                xlink:href="#image0_109_116"
-                                transform="scale(0.01)"
+                        <rect width="36" height="36" fill="url(#pattern0)" />
+                    </mask>
+                    <g mask="url(#mask0_109_116)">
+                        <rect
+                                x="-41"
+                                y="-43"
+                                width="156"
+                                height="131"
+                                fill="#383D3B"
                         />
-                    </pattern>
-                    <image
-                            id="image0_109_116"
-                            width="100"
-                            height="100"
-                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAE0klEQVR4nO2dXYhWRRjHf7qb6SaZaVkRSxCh7CZFIdRmEdKNEZiEJQQhWPYJXUZ3XdZFXVQXfUCCRUEXaVQQ2gdEX1JEEUQQpZhpbfSxYqvutmsX876x2TvvzJkzZ+Y55zw/mJvD+878n/mfd8458z5nBhRFURRFURRFUdIykFtABK4FHgZuBCaAH/PKaS8DwKPALHByTnkWOC2jrlayHNjDf42YWz4AzsumrmVcAezHbka3HASuyqSxNdwBTOI2o1uOAw9mUdpwTgeew9+IU8sOYFFy1Q3lQuBTws3oli+AixJrbxzrgHHcnf15p7g+N96pUynIPMzYP4W7k18EhjDD2vMen/8beKTThuLBYuBVwi/Yvhf+14ElFcbRCC4BvsbvlvbqPvVcid+t8bfASAVxNIKbgD9wd6LvQ99y4B2P+o4At0SMo/bMAx4CZnB3XtFpkUHM9Iqr3tnO55owt1eKs4G3cXfYMWBLiXY2A0c92nkfOLdEO7XmcuB73J30HbA6QnurgG882jsArInQXq24HfgLd+e8BSyN2O6ZwGse7R4DtkZsVyxFx/T5FWgoes1aUIEGEVwAfIS7EyaAmxPoWQ/87qHnM2A4gZ6kXAMcwh38V8DFCXUNYzrcpatRUy7bgBO4g34ZOCODvoXAdg9905ihrrYsBF6gPoFuw2/uLNeJU4q6DgVr8RtavyTt0FqK9cBv1PdiKe3mI5gm3U5KuD0vxRCwE3cAZadAUrMFo9kV105MH4hgCbAXt+j9mIyRuuGb5fIJZiYgKwuA93CL3Q0sy6QxBsswMbjifJfMQ/HjPUT1GmObMK3te418LJfAMf6fxjm3HAE25hJXIRsxsdniniFTgt7HfUQdAkZziErEKHAYe/wfpha0to+Yn4GVqQVlYCXwC/Z+GEspZkcfIW36f3oT9n7YnkrEAPCrRcTuVCIEYcvCHyfRA+OlFgEngVtTCBDGbdj7I0mK0WZL41O0M6F5CPssceETNOQndb7l+EHMNEPbmMTcVfbC1ldWQgxZbDl+OKCupvCT5XjhqZQQQ2xP3VMBdTUFW+yFZyjETRu3HTVEGGqIMNQQYaghwlBDhKGGCEMNEYYaIgw1RBiDuQV4sgjYANyAySz0fc9wGjPxtwfzGvTxStRFpA6GbACexiyxEcpWzKtqDwBvxBBVFdKHrPswr6CVMaPLMLALuCdCXZUh2ZDrgCeJq3E+8BQmSUMkkg15gmoS7AY7dYtEqiGrMctjVMUahC6pIfWibsv8m8UsZDbhWc9ZwF30PvHGMO+ti0KqISssx/cC9xas6zJ6GyxykUypQ5btRDkRUJft2UPkySjVkNaihghDDRGGGiIMNUQYaogw1BBhqCHCUEOEoYYIQw0RhhoiDDVEGGqIMNQQYaghwlBDhKGGCCPm35ijmJ1xYtVVNZuIl3kSTW+IIdOW4+dggqwSW9sh3xmh+lSgwq+KhwxZ+wK+E4sfAr5TN72FWYrJi3KtP1hFuT5A77pMWv8k4aZjdycI6NTyUgm9r2TQe2cJvUHcj982QmXLDPAMZp/CULpbt/ZbIzJWOUrxZL5/Kbu54grMopCriL800zTmnY43iZfyOYLZDW6Y+HuuT2K24duFWfpPURRFURRFURRFUZTa8w888ipyH9om+QAAAABJRU5ErkJggg=="
-                    />
-                </defs>
-            </svg>
+                    </g>
+                    <defs>
+                        <pattern
+                                id="pattern0"
+                                patternContentUnits="objectBoundingBox"
+                                width="1"
+                                height="1"
+                        >
+                            <use
+                                    xlink:href="#image0_109_116"
+                                    transform="scale(0.01)"
+                            />
+                        </pattern>
+                        <image
+                                id="image0_109_116"
+                                width="100"
+                                height="100"
+                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAE0klEQVR4nO2dXYhWRRjHf7qb6SaZaVkRSxCh7CZFIdRmEdKNEZiEJQQhWPYJXUZ3XdZFXVQXfUCCRUEXaVQQ2gdEX1JEEUQQpZhpbfSxYqvutmsX876x2TvvzJkzZ+Y55zw/mJvD+878n/mfd8458z5nBhRFURRFURRFUdIykFtABK4FHgZuBCaAH/PKaS8DwKPALHByTnkWOC2jrlayHNjDf42YWz4AzsumrmVcAezHbka3HASuyqSxNdwBTOI2o1uOAw9mUdpwTgeew9+IU8sOYFFy1Q3lQuBTws3oli+AixJrbxzrgHHcnf15p7g+N96pUynIPMzYP4W7k18EhjDD2vMen/8beKTThuLBYuBVwi/Yvhf+14ElFcbRCC4BvsbvlvbqPvVcid+t8bfASAVxNIKbgD9wd6LvQ99y4B2P+o4At0SMo/bMAx4CZnB3XtFpkUHM9Iqr3tnO55owt1eKs4G3cXfYMWBLiXY2A0c92nkfOLdEO7XmcuB73J30HbA6QnurgG882jsArInQXq24HfgLd+e8BSyN2O6ZwGse7R4DtkZsVyxFx/T5FWgoes1aUIEGEVwAfIS7EyaAmxPoWQ/87qHnM2A4gZ6kXAMcwh38V8DFCXUNYzrcpatRUy7bgBO4g34ZOCODvoXAdg9905ihrrYsBF6gPoFuw2/uLNeJU4q6DgVr8RtavyTt0FqK9cBv1PdiKe3mI5gm3U5KuD0vxRCwE3cAZadAUrMFo9kV105MH4hgCbAXt+j9mIyRuuGb5fIJZiYgKwuA93CL3Q0sy6QxBsswMbjifJfMQ/HjPUT1GmObMK3te418LJfAMf6fxjm3HAE25hJXIRsxsdniniFTgt7HfUQdAkZziErEKHAYe/wfpha0to+Yn4GVqQVlYCXwC/Z+GEspZkcfIW36f3oT9n7YnkrEAPCrRcTuVCIEYcvCHyfRA+OlFgEngVtTCBDGbdj7I0mK0WZL41O0M6F5CPssceETNOQndb7l+EHMNEPbmMTcVfbC1ldWQgxZbDl+OKCupvCT5XjhqZQQQ2xP3VMBdTUFW+yFZyjETRu3HTVEGGqIMNQQYaghwlBDhKGGCEMNEYYaIgw1RBiDuQV4sgjYANyAySz0fc9wGjPxtwfzGvTxStRFpA6GbACexiyxEcpWzKtqDwBvxBBVFdKHrPswr6CVMaPLMLALuCdCXZUh2ZDrgCeJq3E+8BQmSUMkkg15gmoS7AY7dYtEqiGrMctjVMUahC6pIfWibsv8m8UsZDbhWc9ZwF30PvHGMO+ti0KqISssx/cC9xas6zJ6GyxykUypQ5btRDkRUJft2UPkySjVkNaihghDDRGGGiIMNUQYaogw1BBhqCHCUEOEoYYIQw0RhhoiDDVEGGqIMNQQYaghwlBDhKGGCCPm35ijmJ1xYtVVNZuIl3kSTW+IIdOW4+dggqwSW9sh3xmh+lSgwq+KhwxZ+wK+E4sfAr5TN72FWYrJi3KtP1hFuT5A77pMWv8k4aZjdycI6NTyUgm9r2TQe2cJvUHcj982QmXLDPAMZp/CULpbt/ZbIzJWOUrxZL5/Kbu54grMopCriL800zTmnY43iZfyOYLZDW6Y+HuuT2K24duFWfpPURRFURRFURRFUZTa8w888ipyH9om+QAAAABJRU5ErkJggg=="
+                        />
+                    </defs>
+                </svg>
+            </a>
             <li>
                 <a href=""
                 ><span class="biru"><strong>Piggy</strong></span>
-                    Saver</a
+                    Tracker</a
                 >
             </li>
         </div>
@@ -274,7 +276,7 @@
     <section class="footer">
         <div class="line"></div>
         <h2>
-            <span class="biru"><strong>Piggy</strong></span> Saver
+            <span class="biru"><strong>Piggy</strong></span> Tracker
         </h2>
         <div class="bottom-mark">
             <p>
