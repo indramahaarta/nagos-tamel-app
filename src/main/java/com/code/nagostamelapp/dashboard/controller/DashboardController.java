@@ -67,4 +67,9 @@ public class DashboardController {
         model.addAttribute("response", response);
         return "dashboard/dashboard";
     }
+
+    @GetMapping(path = "/dream-piggy")
+    public String getDashboardDreampiggy(Model model) {
+        return "dashboard/dashboard-dream";
+    }
 }
