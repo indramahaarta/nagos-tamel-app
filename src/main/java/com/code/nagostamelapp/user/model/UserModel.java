@@ -36,16 +36,16 @@ public class UserModel {
     private String GopayToken;
 
     @Column(name = "balance_BCI")
-    private float BCIBalance;
+    private Float BCIBalance;
 
     @Column(name = "balance_gopay")
-    private float gopayBalance;
+    private Float gopayBalance;
 
     @Column(name = "balance_ovo")
-    private float ovoBalance;
+    private Float ovoBalance;
 
     @Column(name = "balance_cash")
-    private float cashBalance;
+    private Float cashBalance;
 
     @Column(name = "planning_set")
     @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)
