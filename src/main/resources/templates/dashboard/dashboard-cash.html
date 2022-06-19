@@ -77,7 +77,7 @@
         </div>
         <ul class="menu-list">
             <li><a href="#" id="overview">Overview</a></li>
-            <li><a href="#" id="dream-piggy">Dream Piggy </a></li>
+            <li><a href="/dashboard/dream-piggy" id="dream-piggy">Dream Piggy </a></li>
 
             <a href="/logout">
                 <svg
@@ -185,27 +185,55 @@
     </div>
     <div class="right-container">
         <h2>List Transaksi Terakhir Kamu</h2>
-        <div class="button-container">
-            <a href="/dashboard">
-                <button class="button" style="border: none">Semua</button>
-            </a>
-            <a href="/dashboard/cash">
-                <button class="button active" style="border: none">Cash</button>
-            </a>
-            <a href="/dashboard/gopay">
-                <button class="button" style="border: none">Gopay</button>
-            </a>
-            <a href="/dashboard/ovo">
-                <button class="button" style="border: none">Ovo</button>
-            </a>
-            <a href="/dashboard/bankBCI">
-                <button class="button" style="border: none">BCI</button>
+        <div
+                class="button-container"
+                style="width: 100%; justify-content: space-between"
+        >
+            <div class="left" style="display: flex">
+                <a href="/dashboard">
+                    <button class="button" style="border: none">Semua</button>
+                </a>
+                <a href="/dashboard/cash">
+                    <button class="button active" style="border: none">Cash</button>
+                </a>
+                <a href="/dashboard/gopay">
+                    <button class="button" style="border: none">Gopay</button>
+                </a>
+                <a href="/dashboard/ovo">
+                    <button class="button" style="border: none">OVO</button>
+                </a>
+                <a href="/dashboard/bankBCI">
+                    <button class="button" style="border: none">BCI</button>
+                </a>
+            </div>
+            <a href="/transaction-cash">
+                <button
+                        class="button"
+                        style="
+                            border: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            float: right;
+                            background-color: #aeffca;
+                            border: solid 1px #40674c;
+                            color: #40674c;
+                            font-weight: 700;
+                        "
+                >
+                    <p>Tambahkan Transaksi Cash</p>
+                    <img
+                            style="margin-left: 5px"
+                            th:src="@{/images/add-btn.png}"
+                            alt=""
+                    />
+                </button>
             </a>
         </div>
         <div th:if="${response.size()} ==  0">
             No Data :)
         </div>
-        <div th:if="${response.size()} > 0" th:each="i:${#numbers.sequence(response.size()-1, 0)}">
+        <div th:if="${response.size()} > 0" th:each="i:${#numbers.sequence(0, response.size()-1)}">
             <!-- out-->
             <div class="card" th:if="${response.get(i).direction == 'out'}">
                 <div class="default-part">

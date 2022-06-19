@@ -33,8 +33,11 @@ public class DashboardGopayController {
 
     @GetMapping(path = "/gopay")
     public String getTransactionListGopay(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
-        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String gopayToken = user.getGopayToken();
 

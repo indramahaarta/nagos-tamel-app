@@ -30,8 +30,11 @@ public class DashboardCashController {
 
     @GetMapping(path = "/cash")
     private String getTransactionListCash(Model model, HttpSession session) throws UnirestException {
-        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         List<Transaction> transaction = transactionService.sortByDate(username);
         List<TransactionListResponseDTO> response = new ArrayList<>();
 

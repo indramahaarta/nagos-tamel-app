@@ -37,8 +37,11 @@ public class DashboardController {
 
     @GetMapping(path = "")
     public String getDashBoard(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
-        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String gopayToken = user.getGopayToken();
         String ovoToken = user.getOvoToken();
@@ -69,7 +72,8 @@ public class DashboardController {
     }
 
     @GetMapping(path = "/dream-piggy")
-    public String getDashboardDreampiggy(Model model) {
+    public String getDashboardDreampiggy(Model model, HttpSession session) throws UnirestException {
+        dashboardService.wrapModel(model, session);
         return "dashboard/dashboard-dream";
     }
 }

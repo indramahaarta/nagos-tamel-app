@@ -33,8 +33,11 @@ public class DashboardBankBCIController {
 
     @GetMapping(path = "/bankBCI")
     public String getTransactionListGopay(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
-        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String bciToken = user.getBCIToken();
 

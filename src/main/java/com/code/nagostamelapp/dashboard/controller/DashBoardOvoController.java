@@ -32,8 +32,11 @@ public class DashBoardOvoController {
     DashboardService dashboardService;
     @GetMapping(path = "/ovo")
     public String getTransactionListOvo(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
-        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
+        if(username == null){
+            return "redirect:/login";
+        }
+        dashboardService.wrapModel(model, session);
         UserModel user = userService.getUserByUsername(username);
         String ovoToken = user.getOvoToken();
 
