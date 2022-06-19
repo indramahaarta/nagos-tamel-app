@@ -53,8 +53,11 @@ public class DashboardController {
         Collections.sort(response);
 
         model.addAttribute("response", response);
-
-
         return "dashboard/dashboard";
+    }
+
+    @GetMapping(path = "/dream-piggy")
+    public String getDashboardDreampiggy(Model model) {
+        return "dashboard/dashboard-dream";
     }
 }

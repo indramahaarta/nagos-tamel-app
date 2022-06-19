@@ -49,6 +49,6 @@ public class TransactionController {
     @PostMapping("/transaction-cash")
     public String postTransactionCash(Transaction transaction, HttpSession session) {
         transactionService.saveTransaction(transaction, session);
-        return "redirect:/transaction-cash";
+        return "redirect:/dashboard";
     }
 }
