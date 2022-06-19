@@ -37,7 +37,6 @@ public class GopayController {
     @PostMapping("/gopay-OTP")
     public String postOTPPage(@RequestParam(value = "noHandphone") String noHandphone, HttpServletRequest request) throws UnirestException {
         JSONObject obj = AuthAPIHandling.getInstance().handleRequestOTPEwallet("11", noHandphone);
-        System.out.println(obj);
         int status = obj.getInt("status");
         if(status == 200){
             JSONObject data = obj.getJSONObject("data");
@@ -78,7 +77,6 @@ public class GopayController {
         String otpToken = (String) session.getAttribute("otpToken_gopay");
         JSONObject myObj = AuthAPIHandling.getInstance().handleInsertOTPGopay(username, uniqueId, sessionId, otpToken, OTP);
         int status = myObj.getInt("status");
-        System.out.println(myObj);
         if(status == 200){
             String user_token_gopay = myObj.getString("data");
             UserModel user = userService.getUserByUsername(userService.getUsernameFromSession(session));
