@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
         user.setPassword(password);
         user.setEmail(email);
         user.setName(fullname);
+        user.setCashBalance((float) 0);
         return userRepository.save(user);
     }
 
