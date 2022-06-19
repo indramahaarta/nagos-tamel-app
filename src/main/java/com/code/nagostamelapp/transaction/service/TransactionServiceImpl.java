@@ -36,6 +36,11 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
+    public List<Transaction> findByUsername(String username) {
+        return transactionRepository.findAllByUsername(username);
+    }
+
+    @Override
     public void saveTransaction(Transaction transaction, HttpSession httpSession) {
         String username = userService.getUsernameFromSession(httpSession);
         transaction.setUsername(username);
