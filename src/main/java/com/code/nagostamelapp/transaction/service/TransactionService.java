@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface TransactionService {
     List<Transaction> sortByDate(String username);
+    List<Transaction> findByUsername(String username);
     void saveTransaction(Transaction transaction, HttpSession httpSession);
 }
