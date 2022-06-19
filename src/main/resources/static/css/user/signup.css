@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+    --main-blue: #0096a3;
+    --background-white: #fff;
+    --gradient-orange: linear-gradient(
+            to bottom right,
+            #ff8525 0%,
+            #ffb074 100%
+    );
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    background-image: url("../../images/signup-login-bg.png");
+    background-repeat: no-repeat;
+    background-position: 50% 160%;
+    background-size: 110%;
+    display: flex;
+    position: relative;
+    height: 100vh;
+}
+.card {
+    background-color: white;
+    display: inline;
+    width: 40vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3em 4em;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+.card h1 {
+    font-weight: 600;
+}
+.card .isi p {
+    margin-bottom: 0;
+    margin-top: 1.5em;
+    text-align: left;
+}
+.card input {
+    width: 100%;
+    padding: 0.7em;
+    font-size: 1em;
+    border-radius: 10px;
+}
+.card button {
+    padding: 2px 15px;
+    font-size: 1.5em;
+    border-radius: 50px;
+    background-color: var(--main-blue);
+    cursor: pointer;
+    color: white;
+    border: 2px solid var(--main-blue);
+    margin: auto;
+    margin-top: 1em;
+}
+.card a {
+    color: var(--main-blue);
+}
+.card p.sudah {
+    text-align: center;
+    margin-top: 2em;
+}

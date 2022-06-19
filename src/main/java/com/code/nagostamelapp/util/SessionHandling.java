@@ -1,4 +1,4 @@
-package com.code.nagostamelapp.user.util;
+package com.code.nagostamelapp.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +15,6 @@ public class SessionHandling {
         if (sessionHandling == null) {
             sessionHandling = new SessionHandling();
         }
-
         return sessionHandling;
     }
 

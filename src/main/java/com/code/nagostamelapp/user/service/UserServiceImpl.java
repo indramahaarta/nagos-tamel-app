@@ -2,7 +2,7 @@ package com.code.nagostamelapp.user.service;
 
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.repository.UserRepository;
-import com.code.nagostamelapp.user.util.SessionHandling;
+import com.code.nagostamelapp.util.SessionHandling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
