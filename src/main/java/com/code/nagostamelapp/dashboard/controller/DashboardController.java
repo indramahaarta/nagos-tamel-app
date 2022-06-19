@@ -1,5 +1,7 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.financialPlanning.model.dto.PlanningResponseDTO;
+import com.code.nagostamelapp.financialPlanning.service.PlanningService;
 import com.code.nagostamelapp.transaction.service.TransactionService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.model.UserModel;
@@ -23,6 +25,9 @@ public class DashboardController {
 
     @Autowired
     private TransactionService transactionService;
+
+    @Autowired
+    private PlanningService planningService;
 
     @GetMapping(path = "")
     public String getDashBoard(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
@@ -57,7 +62,24 @@ public class DashboardController {
     }
 
     @GetMapping(path = "/dream-piggy")
-    public String getDashboardDreampiggy(Model model) {
+    public String getDashboardDreampiggy(Model model, HttpSession session) {
+        String username = userService.getUsernameFromSession(session);
+        UserModel user = userService.getUserByUsername(username);
+        List<PlanningResponseDTO> dtos = planningService.findByUserModel(user);
+
+        Float total = (float) 0;
+        Float monthly = (float) 0;
+
+        for (var dto : dtos) {
+            total += dto.getAmount();
+            monthly += dto.getMonthly();
+        }
+
+        model.addAttribute("planning", dtos);
+        model.addAttribute("name", user.getName());
+        model.addAttribute("total", ConverterToRupiah.convert(total));
+        model.addAttribute("monthly", ConverterToRupiah.convert(monthly));
+
         return "dashboard/dashboard-dream";
     }
 }

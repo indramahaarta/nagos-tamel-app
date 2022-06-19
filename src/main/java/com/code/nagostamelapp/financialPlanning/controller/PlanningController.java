@@ -34,6 +34,6 @@ public class PlanningController {
         dto.setUsername(userService.getUsernameFromSession(session));
         planningService.savePlanning(dto);
 
-        return "redirect:/financial-planning";
+        return "redirect:/dashboard/dream-piggy";
     }
 }
