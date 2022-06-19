@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 span.line {
-    background: url("images/line-biru.png") no-repeat bottom;
+    background: url("../../images/line-biru.png") no-repeat bottom;
 }
 span.biru {
     color: var(--main-blue);

@@ -1,41 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Financial Planning Form</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <meta charset="UTF-8" />
+    <!-- ini diganti -->
+    <title>Add Dream Piggy | Piggy Saver | Nagos Tamel</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/financialPlanning/financialPlanningForm.css}"/>
 </head>
 <body>
-  <form method="post" th:action="@{/financial-planning/save}" th:object="${planning}">
-      <h2>Financial Planning Form</h2>
+<div class="blur">
+    <img th:src="@{/images/blur-atas.png}" alt="" class="atas">
+    <img th:src="@{/images/blur-trophy.png}" alt="" class="trophy">
+    <img th:src="@{/images/blur-babi.png}" alt="" class="babi">
+    <img th:src="@{/images/blur-money.png}" alt="" class="money">
+    <img th:src="@{/images/blur-bawah.png}" alt="" class="bawah">
+</div>
 
-      <div class="form-group">
-          <label for="target">Target</label>
-          <input id="target" class="form-control" th:field="*{target}" type="text" name="target" placeholder="Enter your target item" required>
-      </div>
-      <div class="form-group">
-          <label for="amount">Amount</label>
-          <input id="amount" class="form-control" th:field="*{amount}" type="number" name="amount" placeholder="Enter your savings amount" required>
-      </div>
-      <div class="form-group">
-          <label for="range">Range/Interval</label>
-          <input id="range" class="form-control" th:field="*{range}" type="number" name="range" placeholder="Enter your savings interval (in mount)" required>
-      </div>
-      <div>
-          <button type="submit">Create Financial Planning</button>
-      </div>
-  </form>
+<section class="container">
+    <h1 class="title">Calculate Your Dream Item Now!</h1>
 
+    <form
+            method="post"
+            th:action="@{/financial-planning/save}"
+            th:object="${planning}"
+    >
+        <!-- tambahin counterAnalysis() function -->
+        <div class="form-group">
+            <label for="target">Dream Item Name</label>
+            <input
+                    id="target"
+                    class="form-control"
+                    th:field="*{target}"
+                    type="text"
+                    name="target"
+                    placeholder="Enter your target item"
+                    required
+
+                    onchange="counterAnalysis()"
+
+            />
+        </div>
+        <!-- tambahin counterAnalysis() function -->
+        <div class="form-group">
+            <label for="amount">Target Amount</label>
+            <input
+                    id="amount"
+                    class="form-control"
+                    th:field="*{amount}"
+                    type="number"
+                    name="amount"
+                    placeholder="Enter your target savings amount"
+                    required
+                    onchange="counterAnalysis()"
+            />
+        </div>
+        <!-- tambahin counterAnalysis() function -->
+        <div class="form-group">
+            <label for="range">Range/Interval</label>
+            <input
+                    id="range"
+                    class="form-control"
+                    th:field="*{range}"
+                    type="number"
+                    name="range"
+                    placeholder="Enter your savings interval (in month)"
+                    required
+                    onchange="counterAnalysis()"
+            />
+        </div>
+        <!-- tambahin -->
+        <div class="analysis-container" id="analysis-container" style="display:none">
+            <h3>Counter Analysis for <span id="nama-item"></span>:</h2>
+                <p>To make sure you will reach your target item, at least you need to save:</p>
+                <div class="container">
+                    <p>Rp <span id="monthly">xxx</span> Monthly</p>
+                    <small>or</small>
+                    <p>Rp <span id="weekly">xxx</span> Weekly</p>
+                    <small>or</small>
+                    <p>Rp <span id="daily">xxx</span> Daily</p>
+                </div>
+        </div>
+        <!-- tambahin -->
+        <div class="button-container">
+            <div class="inner-container">
+                <button type="submit">Create Financial Planning</button>
+            </div>
+        </div>
+    </form>
+</section>
 </body>
+<!-- tambahin -->
+<script>
+    function counterAnalysis() {
+        let target = document.getElementById("target").value;
+        let amount = document.getElementById("amount").value;
+        let interval = document.getElementById("range").value;
+
+        if( target != "" && interval != 0 && amount != 0 ) {
+            document.getElementById("analysis-container").style.display = "block";
+        }
+
+        let monthly = Math.ceil(amount / interval);
+        let weekly = Math.ceil(monthly / 30);
+        let daily = Math.ceil(weekly / 7);
+
+        document.getElementById("nama-item").innerHTML = target;
+        document.getElementById("monthly").innerHTML = monthly.toLocaleString();
+        document.getElementById("weekly").innerHTML = weekly.toLocaleString();
+        document.getElementById("daily").innerHTML = daily.toLocaleString();
+    }
+
+</script>
 </html>
