@@ -17,4 +17,5 @@ public class TransactionListResponseDTO {
     private String institution;
     private String status_payment;
     private String direction;
+    private String amountStr;
 }
