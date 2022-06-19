@@ -36,7 +36,7 @@ public class Transaction {
     @Column(name = "transaction_user")
     private String username;
 
-    public Transaction(Date date, Float amount, String description, String status, String direction) {
+    public Transaction(Date date, float amount, String description, String status, String direction) {
         this.date = date;
         this.amount = amount;
         this.description = description;

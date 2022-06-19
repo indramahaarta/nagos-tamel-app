@@ -2,10 +2,13 @@ package com.code.nagostamelapp.transaction.service;
 
 import com.code.nagostamelapp.transaction.model.Transaction;
 import com.code.nagostamelapp.transaction.repository.TransactionRepository;
+import com.code.nagostamelapp.user.model.UserModel;
+import com.code.nagostamelapp.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,9 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Autowired
     TransactionRepository transactionRepository;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public List<Transaction> sortByDate(String username) {
@@ -30,7 +36,16 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public void saveTransaction(Transaction transaction) {
+    public void saveTransaction(Transaction transaction, HttpSession httpSession) {
+        String username = userService.getUsernameFromSession(httpSession);
+        transaction.setUsername(username);
+        UserModel user = userService.getUserByUsername(username);
+        if (transaction.getDirection().equals("in")) {
+            user.setCashBalance(user.getCashBalance() + transaction.getAmount());
+        } else {
+            user.setCashBalance(user.getCashBalance() - transaction.getAmount());
+        }
+
         transactionRepository.save(transaction);
     }
 }
