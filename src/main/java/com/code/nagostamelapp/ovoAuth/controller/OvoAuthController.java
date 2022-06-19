@@ -22,9 +22,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class OvoAuthController{
-    //udah sampe dapetin user access token buat ovo
-    //user access tokennya disimpen di db buat get transaction list, balance
-    //belom erorr handling samsek
     @Autowired
     private UserService userService;
 
@@ -37,14 +34,12 @@ public class OvoAuthController{
         if(username == null){
             return "redirect:/login";
         }
-        System.out.println(username);
         return "ovoAuth/requestOvo";
     }
 
     @PostMapping("/ovoOTP")
     public String postOTPPage(@RequestParam(value = "noHandphone") String noHandphone, HttpServletRequest request) throws UnirestException {
         JSONObject myObj = AuthAPIHandling.getInstance().handleRequestOTPEwallet("12", noHandphone);
-        System.out.println(myObj);
         int status = myObj.getInt("status");
         if(status == 428){
             JSONObject data = myObj.getJSONObject("data");

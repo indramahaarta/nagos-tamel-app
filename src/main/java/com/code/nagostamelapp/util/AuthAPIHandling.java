@@ -49,7 +49,6 @@ public class AuthAPIHandling {
                 .header("Authorization", "Bearer " + PUBLIC)
                 .body("{\"otp\":\""+OTP+"\",\"otpToken\":\""+otpToken+"\",\"sessionId\":\""+sessionId+"\",\"uniqueId\":\""+uniqueId+"\",\"username\":\""+username+"\"}")
                 .asJson();
-        System.out.println("{\"otp\":\""+OTP+"\",\"otpToken\":\""+otpToken+"\",\"sessionId\":\""+sessionId+"\",\"uniqueId\":\""+uniqueId+"\",\"username\":\""+username+"\"}");
         return response.getBody().getObject();
     }
 

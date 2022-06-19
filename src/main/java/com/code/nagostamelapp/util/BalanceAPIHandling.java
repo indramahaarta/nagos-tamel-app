@@ -39,7 +39,6 @@ public class BalanceAPIHandling {
         JSONObject obj = response.getBody().getObject();
         int status = obj.getInt("status");
         String message = obj.getString("message");
-        System.out.println(obj);
         if (status == 200 && message.equals("OK")) {
             JSONArray array = obj.getJSONArray("data");
             JSONObject balances = array.getJSONObject(0).getJSONObject("balances");

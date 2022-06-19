@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -186,117 +186,32 @@
             </div>
             <div class="right-container">
                 <div class="upper">
-                    <h2>Hi, <span>Adham</span>!</h2>
-                    <h3>Total Target Amount kamu: Rp<span>50,000,000</span></h3>
+                    <h2>Hi, <span th:text="${name}">Adham</span>!</h2>
+                    <h3>Total Target Amount kamu: <span th:text="${total}">50,000,000</span></h3>
                     <h3>Total Kebutuhan Tabung:</h3>
                     <ul>
-                        <!-- <li>
-                            <h3 class="daily">
-                                Daily: Rp <span>100,000</span>
-                            </h3>
-                        </li>
-                        <li>
-                            <h3 class="weekly">
-                                Weekly: Rp <span>200,000</span>
-                            </h3>
-                        </li> -->
                         <li>
                             <h3 class="monthly">
-                                Monthly: Rp <span>5,000,000</span>
+                                Monthly: <span th:text="${monthly}">5,000,000</span>
                             </h3>
                         </li>
                     </ul>
                 </div>
                 <div class="lower">
                     <h2>List Barang Dream Piggy-mu:</h2>
-
-                    <!-- <div class="card">
+                    <div class="card" th:if="${planning.size()} > 0" th:each="i:${#numbers.sequence(planning.size()-1, 0)}">
                         <div class="default-part">
                             <div class="left">
-                                <h3>Judul</h3>
+                                <h3 th:text="${planning.get(i).target}">Judul</h3>
                                 <div class="isi">
-                                    <p>Target Amount: Rp&nbsp;</p>
-                                    <p>50,000</p>
-                                </div>
-                                <div class="isi">
-                                    <p>Target Date:&nbsp;</p>
-                                    <p>dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <div class="container day">
-                                    <p>Daily: &nbsp;</p>
-                                    <p>Rp amount</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="delete">
-                            <svg
-                                width="54"
-                                height="54"
-                                viewBox="0 0 54 54"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
-                                    fill="white"
-                                />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="default-part">
-                            <div class="left">
-                                <h3>Judul</h3>
-                                <div class="isi">
-                                    <p>Target Amount: Rp&nbsp;</p>
-                                    <p>50,000</p>
-                                </div>
-                                <div class="isi">
-                                    <p>Target Date:&nbsp;</p>
-                                    <p>dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <div class="container weekly">
-                                    <p>Weekly: &nbsp;</p>
-                                    <p>Rp amount</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="delete">
-                            <svg
-                                width="54"
-                                height="54"
-                                viewBox="0 0 54 54"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
-                                    fill="white"
-                                />
-                            </svg>
-                        </div>
-                    </div> -->
-                    <div class="card">
-                        <div class="default-part">
-                            <div class="left">
-                                <h3>Judul</h3>
-                                <div class="isi">
-                                    <p>Target Amount: Rp&nbsp;</p>
-                                    <p>50,000</p>
-                                </div>
-                                <div class="isi">
-                                    <p>Target Date:&nbsp;</p>
-                                    <p>dd-mm-yy</p>
+                                    <p >Target Amount: </p>
+                                    <p th:text="${planning.get(i).amountStr}">50,000</p>
                                 </div>
                             </div>
                             <div class="right">
                                 <div class="container monthly">
                                     <p>Monthly: &nbsp;</p>
-                                    <p>Rp amount</p>
+                                    <p th:text="${planning.get(i).monthlyStr}"></p>
                                 </div>
                             </div>
                         </div>
@@ -317,6 +232,7 @@
                             </a>
                         </div>
                     </div>
+
                     <a href="/financial-planning" style="text-decoration: none">
                         <div class="card add-dream">
                             <div class="inner">
