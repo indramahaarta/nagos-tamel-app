@@ -25,7 +25,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" th:href="@{/css/financialPlanning/financialPlanningForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/financialPlanning/financialPlanningForm.css}" />
 </head>
 <body>
 <div class="blur">
@@ -35,7 +35,6 @@
     <img th:src="@{/images/blur-money.png}" alt="" class="money">
     <img th:src="@{/images/blur-bawah.png}" alt="" class="bawah">
 </div>
-
 <section class="container">
     <h1 class="title">Calculate Your Dream Item Now!</h1>
 
@@ -55,9 +54,7 @@
                     name="target"
                     placeholder="Enter your target item"
                     required
-
                     onchange="counterAnalysis()"
-
             />
         </div>
         <!-- tambahin counterAnalysis() function -->
@@ -89,16 +86,82 @@
             />
         </div>
         <!-- tambahin -->
-        <div class="analysis-container" id="analysis-container" style="display:none">
-            <h3>Counter Analysis for <span id="nama-item"></span>:</h2>
-                <p>To make sure you will reach your target item, at least you need to save:</p>
-                <div class="container">
-                    <p>Rp <span id="monthly">xxx</span> Monthly</p>
-                    <small>or</small>
-                    <p>Rp <span id="weekly">xxx</span> Weekly</p>
-                    <small>or</small>
-                    <p>Rp <span id="daily">xxx</span> Daily</p>
-                </div>
+        <div
+                class="analysis-container"
+                id="analysis-container"
+                style="display: none"
+        >
+            <h3>Counter Analysis for <span id="nama-item"></span>:</h3>
+            <p>
+                To make sure you will reach your target item, at least
+                you need to save:
+            </p>
+            <div class="container">
+                <p>Rp <span id="monthly">xxx</span> Monthly</p>
+                <small>or</small>
+                <p>Rp <span id="weekly">xxx</span> Weekly</p>
+                <small>or</small>
+                <p>Rp <span id="daily">xxx</span> Daily</p>
+            </div>
+        </div>
+        <div
+                class="market-container"
+                id="market-container"
+                style="display: none"
+        >
+            <h3>Product that may simmilar to your dream item:</h3>
+            <div class="wrapper">
+                <a
+                        href="https://www.tokopedia.com/putragroup/iphone-13-mini-128gb-256gb-512gb-starlight-midnight-pink-blue-red-ibox-128gb-inter-green"
+                >
+                    <div class="ads-container">
+                        <img th:src="@{/images/image1.jpg}" alt="" />
+                        <div class="desc">
+                            <h2>iPhone 13 Mini 128GB 256GB 512GB</h2>
+                            <h3>Rp11.490.000</h3>
+                            <p>Terjual 750+</p>
+                            <div class="rating">
+                                <img th:src="@{/images/star.png}" alt="" />
+                                <p>5</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a
+                        href="https://www.tokopedia.com/ptpratamasemesta/iphone-13-garansi-resmi-128gb-green?extParam=ivf%3Dfalse%26src%3Dsearch"
+                >
+                    <div class="ads-container">
+                        <img th:src="@{/images/image2.jpeg}" alt="" />
+                        <div class="desc">
+                            <h2>
+                                iPhone 13 Garansi Resmi - 128GB, Green
+                            </h2>
+                            <h3>Rp14.799.000</h3>
+                            <p>Terjual 750+</p>
+                            <div class="rating">
+                                <img th:src="@{/images/star.png}" alt="" />
+                                <p>5</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a
+                        href="https://www.tokopedia.com/tokohapedia/new-iphone-13-128-256-512-starlight-midnight-blue-pink-red-red-128-gb?src=topads"
+                >
+                    <div class="ads-container">
+                        <img th:src="@{/images/image3.jpg}" alt="" />
+                        <div class="desc">
+                            <h2>New iPhone 13 128 Starlight</h2>
+                            <h3>Rp12.699.000</h3>
+                            <p>Terjual 750+</p>
+                            <div class="rating">
+                                <img th:src="@{/images/star.png}" alt="" />
+                                <p>4.9</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
         <!-- tambahin -->
         <div class="button-container">
@@ -116,8 +179,11 @@
         let amount = document.getElementById("amount").value;
         let interval = document.getElementById("range").value;
 
-        if( target != "" && interval != 0 && amount != 0 ) {
-            document.getElementById("analysis-container").style.display = "block";
+        if (target != "" && interval != 0 && amount != 0) {
+            document.getElementById("analysis-container").style.display =
+                "block";
+            document.getElementById("market-container").style.display =
+                "block";
         }
 
         let monthly = Math.ceil(amount / interval);
@@ -125,10 +191,11 @@
         let daily = Math.ceil(weekly / 7);
 
         document.getElementById("nama-item").innerHTML = target;
-        document.getElementById("monthly").innerHTML = monthly.toLocaleString();
-        document.getElementById("weekly").innerHTML = weekly.toLocaleString();
+        document.getElementById("monthly").innerHTML =
+            monthly.toLocaleString();
+        document.getElementById("weekly").innerHTML =
+            weekly.toLocaleString();
         document.getElementById("daily").innerHTML = daily.toLocaleString();
     }
-
 </script>
 </html>
