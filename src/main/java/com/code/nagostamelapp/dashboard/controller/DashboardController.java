@@ -96,7 +96,7 @@ public class DashboardController {
 
         model.addAttribute("planning", dtos);
         model.addAttribute("name", user.getName());
-        model.addAttribute("total", ConverterToRupiah.convert(total));
+        model.addAttribute("sum", ConverterToRupiah.convert(total));
         model.addAttribute("monthly", ConverterToRupiah.convert(monthly));
 
         return "dashboard/dashboard-dream";
