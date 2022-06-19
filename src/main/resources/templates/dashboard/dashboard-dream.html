@@ -199,19 +199,19 @@
                 </div>
                 <div class="lower">
                     <h2>List Barang Dream Piggy-mu:</h2>
-                    <div class="card" th:if="${planning.size()} > 0" th:each="p:${planning}">
+                    <div class="card" th:if="${planning.size()} > 0" th:each="i:${#numbers.sequence(planning.size()-1, 0)}">
                         <div class="default-part">
                             <div class="left">
-                                <h3 th:text="${p.target}">Judul</h3>
+                                <h3 th:text="${planning.get(i).target}">Judul</h3>
                                 <div class="isi">
                                     <p >Target Amount: </p>
-                                    <p th:text="${p.amountStr}">50,000</p>
+                                    <p th:text="${planning.get(i).amountStr}">50,000</p>
                                 </div>
                             </div>
                             <div class="right">
                                 <div class="container monthly">
                                     <p>Monthly: &nbsp;</p>
-                                    <p th:text="${p.monthlyStr}"></p>
+                                    <p th:text="${planning.get(i).monthlyStr}"></p>
                                 </div>
                             </div>
                         </div>
