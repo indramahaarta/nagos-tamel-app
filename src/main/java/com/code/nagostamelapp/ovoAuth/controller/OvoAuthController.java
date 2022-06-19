@@ -4,6 +4,7 @@ import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.repository.UserRepository;
 import com.code.nagostamelapp.user.service.UserService;
 import com.code.nagostamelapp.util.AuthAPIHandling;
+import com.code.nagostamelapp.util.BalanceAPIHandling;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +96,14 @@ public class OvoAuthController{
             return "redirect:/insertOvo?error4";
         }
         return "redirect:/insertOvo?error3";
+    }
+    @GetMapping("/get-balance-ovo")
+    public float getOvoBalance(HttpSession session) throws UnirestException {
+        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
+        String ovoToken = userModel.getOvoToken();
+        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(ovoToken, "ovo", session);
+        userModel.setGopayBalance(balance);
+        userRepository.save(userModel);
+        return balance;
     }
 }

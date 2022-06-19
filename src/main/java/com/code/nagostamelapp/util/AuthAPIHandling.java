@@ -60,4 +60,5 @@ public class AuthAPIHandling {
                 .asJson();
         return response.getBody().getObject();
     }
+
 }

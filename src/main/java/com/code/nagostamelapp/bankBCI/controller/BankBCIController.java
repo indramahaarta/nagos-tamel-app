@@ -4,7 +4,9 @@ import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.repository.UserRepository;
 import com.code.nagostamelapp.user.service.UserService;
 import com.code.nagostamelapp.util.AuthAPIHandling;
+import com.code.nagostamelapp.util.BalanceAPIHandling;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 
 @Controller
 public class BankBCIController {
@@ -46,5 +49,14 @@ public class BankBCIController {
             return "redirect:/auth-BCI?error1";
         }
         return "redirect:/auth-BCI?error2";
+    }
+    @GetMapping("/get-balance-bci")
+    public float getBankBCIBalance(HttpSession session) throws UnirestException {
+        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
+        String bankBCIToken = userModel.getBCIToken();
+        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(bankBCIToken, "BCI", session);
+        userModel.setBCIBalance(balance);
+        userRepository.save(userModel);
+        return balance;
     }
 }
