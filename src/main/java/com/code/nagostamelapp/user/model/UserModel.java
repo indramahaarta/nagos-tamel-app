@@ -44,6 +44,8 @@ public class UserModel {
     @Column(name = "balance_ovo")
     private float ovoBalance;
 
+    @Column(name = "balance_cash")
+    private float cashBalance;
 
     @Column(name = "planning_set")
     @OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL)

@@ -53,6 +53,12 @@ body {
     font-size: 1em;
     border-radius: 10px;
 }
+.card select {
+    width: 100%;
+    padding: 0.7em;
+    font-size: 1em;
+    border-radius: 10px;
+}
 .card button {
     padding: 2px 15px;
     font-size: 1.5em;
