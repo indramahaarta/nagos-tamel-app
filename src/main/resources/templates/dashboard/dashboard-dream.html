@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard | Piggy Saver | Nagos Tamel</title>
+        <script
+            src="https://kit.fontawesome.com/6e024d5b6e.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" th:href="@{/css/dashboard/dashboard-dream.css}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+        <!-- required -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <nav class="navbar">
+        <div class="center">
+            <div class="left-content">
+                <a href="/">
+                    <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 36 36"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                    >
+                        <mask
+                                id="mask0_109_116"
+                                style="mask-type: alpha"
+                                maskUnits="userSpaceOnUse"
+                                x="0"
+                                y="0"
+                                width="36"
+                                height="36"
+                        >
+                            <rect width="36" height="36" fill="url(#pattern0)" />
+                        </mask>
+                        <g mask="url(#mask0_109_116)">
+                            <rect
+                                    x="-41"
+                                    y="-43"
+                                    width="156"
+                                    height="131"
+                                    fill="#383D3B"
+                            />
+                        </g>
+                        <defs>
+                            <pattern
+                                    id="pattern0"
+                                    patternContentUnits="objectBoundingBox"
+                                    width="1"
+                                    height="1"
+                            >
+                                <use
+                                        xlink:href="#image0_109_116"
+                                        transform="scale(0.01)"
+                                />
+                            </pattern>
+                            <image
+                                    id="image0_109_116"
+                                    width="100"
+                                    height="100"
+                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAE0klEQVR4nO2dXYhWRRjHf7qb6SaZaVkRSxCh7CZFIdRmEdKNEZiEJQQhWPYJXUZ3XdZFXVQXfUCCRUEXaVQQ2gdEX1JEEUQQpZhpbfSxYqvutmsX876x2TvvzJkzZ+Y55zw/mJvD+878n/mfd8458z5nBhRFURRFURRFUdIykFtABK4FHgZuBCaAH/PKaS8DwKPALHByTnkWOC2jrlayHNjDf42YWz4AzsumrmVcAezHbka3HASuyqSxNdwBTOI2o1uOAw9mUdpwTgeew9+IU8sOYFFy1Q3lQuBTws3oli+AixJrbxzrgHHcnf15p7g+N96pUynIPMzYP4W7k18EhjDD2vMen/8beKTThuLBYuBVwi/Yvhf+14ElFcbRCC4BvsbvlvbqPvVcid+t8bfASAVxNIKbgD9wd6LvQ99y4B2P+o4At0SMo/bMAx4CZnB3XtFpkUHM9Iqr3tnO55owt1eKs4G3cXfYMWBLiXY2A0c92nkfOLdEO7XmcuB73J30HbA6QnurgG882jsArInQXq24HfgLd+e8BSyN2O6ZwGse7R4DtkZsVyxFx/T5FWgoes1aUIEGEVwAfIS7EyaAmxPoWQ/87qHnM2A4gZ6kXAMcwh38V8DFCXUNYzrcpatRUy7bgBO4g34ZOCODvoXAdg9905ihrrYsBF6gPoFuw2/uLNeJU4q6DgVr8RtavyTt0FqK9cBv1PdiKe3mI5gm3U5KuD0vxRCwE3cAZadAUrMFo9kV105MH4hgCbAXt+j9mIyRuuGb5fIJZiYgKwuA93CL3Q0sy6QxBsswMbjifJfMQ/HjPUT1GmObMK3te418LJfAMf6fxjm3HAE25hJXIRsxsdniniFTgt7HfUQdAkZziErEKHAYe/wfpha0to+Yn4GVqQVlYCXwC/Z+GEspZkcfIW36f3oT9n7YnkrEAPCrRcTuVCIEYcvCHyfRA+OlFgEngVtTCBDGbdj7I0mK0WZL41O0M6F5CPssceETNOQndb7l+EHMNEPbmMTcVfbC1ldWQgxZbDl+OKCupvCT5XjhqZQQQ2xP3VMBdTUFW+yFZyjETRu3HTVEGGqIMNQQYaghwlBDhKGGCEMNEYYaIgw1RBiDuQV4sgjYANyAySz0fc9wGjPxtwfzGvTxStRFpA6GbACexiyxEcpWzKtqDwBvxBBVFdKHrPswr6CVMaPLMLALuCdCXZUh2ZDrgCeJq3E+8BQmSUMkkg15gmoS7AY7dYtEqiGrMctjVMUahC6pIfWibsv8m8UsZDbhWc9ZwF30PvHGMO+ti0KqISssx/cC9xas6zJ6GyxykUypQ5btRDkRUJft2UPkySjVkNaihghDDRGGGiIMNUQYaogw1BBhqCHCUEOEoYYIQw0RhhoiDDVEGGqIMNQQYaghwlBDhKGGCCPm35ijmJ1xYtVVNZuIl3kSTW+IIdOW4+dggqwSW9sh3xmh+lSgwq+KhwxZ+wK+E4sfAr5TN72FWYrJi3KtP1hFuT5A77pMWv8k4aZjdycI6NTyUgm9r2TQe2cJvUHcj982QmXLDPAMZp/CULpbt/ZbIzJWOUrxZL5/Kbu54grMopCriL800zTmnY43iZfyOYLZDW6Y+HuuT2K24duFWfpPURRFURRFURRFUZTa8w888ipyH9om+QAAAABJRU5ErkJggg=="
+                            />
+                        </defs>
+                    </svg>
+                </a>
+                <li>
+                    <a href=""
+                        ><span class="biru"><strong>Piggy</strong></span>
+                        Saver</a
+                    >
+                </li>
+            </div>
+            <ul class="menu-list">
+                <li><a href="/dashboard" id="overview">Overview</a></li>
+                <li><a href="#" id="dream-piggy">Dream Piggy </a></li>
+
+                <a href="/logout">
+                    <svg
+                            width="80"
+                            height="72"
+                            viewBox="0 0 80 72"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="logout-btn"
+                            style="margin-left: 2em; margin-bottom: -5px"
+                    >
+                        <path
+                                d="M60 16L54.36 21.64L64.68 32H24V40H64.68L54.36 50.32L60 56L80 36L60 16ZM8 8H40V0H8C3.6 0 0 3.6 0 8V64C0 68.4 3.6 72 8 72H40V64H8V8Z"
+                                fill="black"
+                        />
+                    </svg>
+                </a>
+            </ul>
+            <div class="icon cancel-btn">
+                <i class="fas fa-times"></i>
+            </div>
+            <div id="menu-btn" class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <body>
+        <section class="upper">
+            <h1>Dashboard</h1>
+        </section>
+        <section class="content">
+            <div class="left">
+                <div class="card">
+                    <h2>Saldo-mu</h2>
+                    <div class="chart">
+                        <canvas id="myChart" width="200"></canvas>
+                        <div
+                            class="dummy-cash"
+                            id="data-cash"
+                            data-cash=""
+                        ></div>
+                        <div
+                            class="dummy-gopay"
+                            id="data-gopay"
+                            data-gopay=""
+                        ></div>
+                        <div class="dummy-ovo" id="data-ovo" data-ovo=""></div>
+                        <div class="dummy-bci" id="data-bci" data-bci=""></div>
+                    </div>
+                    <div class="container total">
+                        <div class="left">
+                            <img th:src="@{/images/wallet.png}" alt="" />
+                            <p>Total</p>
+                        </div>
+                        <div class="right">
+                            <p>Rp 50,000</p>
+                        </div>
+                    </div>
+                    <div class="container cash">
+                        <div class="left">
+                            <img th:src="@{/images/money.png}" alt="" />
+                            <p>Cash</p>
+                        </div>
+                        <div class="right">
+                            <p>Rp 50,000</p>
+                        </div>
+                    </div>
+                    <div class="container gopay">
+                        <div class="left">
+                            <img th:src="@{/images/gopay.png}" alt="" />
+                            <p>Gopay</p>
+                        </div>
+                        <div class="right">
+                            <p>Rp 50,000</p>
+                        </div>
+                    </div>
+                    <div class="container ovo">
+                        <div class="left">
+                            <img th:src="@{/images/ovo.png}" alt="" />
+                            <p>OVO</p>
+                        </div>
+                        <div class="right">
+                            <p>Rp 50,000</p>
+                        </div>
+                    </div>
+                    <div class="container bci">
+                        <div class="left">
+                            <img th:src="@{/images/bank.png}" alt="" />
+                            <p>BCI</p>
+                        </div>
+                        <div class="right">
+                            <p>Rp 50,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="upper">
+                    <h2>Hi, <span>Adham</span>!</h2>
+                    <h3>Total Target Amount kamu: Rp<span>50,000,000</span></h3>
+                    <h3>Total Kebutuhan Tabung:</h3>
+                    <ul>
+                        <!-- <li>
+                            <h3 class="daily">
+                                Daily: Rp <span>100,000</span>
+                            </h3>
+                        </li>
+                        <li>
+                            <h3 class="weekly">
+                                Weekly: Rp <span>200,000</span>
+                            </h3>
+                        </li> -->
+                        <li>
+                            <h3 class="monthly">
+                                Monthly: Rp <span>5,000,000</span>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lower">
+                    <h2>List Barang Dream Piggy-mu:</h2>
+
+                    <!-- <div class="card">
+                        <div class="default-part">
+                            <div class="left">
+                                <h3>Judul</h3>
+                                <div class="isi">
+                                    <p>Target Amount: Rp&nbsp;</p>
+                                    <p>50,000</p>
+                                </div>
+                                <div class="isi">
+                                    <p>Target Date:&nbsp;</p>
+                                    <p>dd-mm-yy</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="container day">
+                                    <p>Daily: &nbsp;</p>
+                                    <p>Rp amount</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="delete">
+                            <svg
+                                width="54"
+                                height="54"
+                                viewBox="0 0 54 54"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="default-part">
+                            <div class="left">
+                                <h3>Judul</h3>
+                                <div class="isi">
+                                    <p>Target Amount: Rp&nbsp;</p>
+                                    <p>50,000</p>
+                                </div>
+                                <div class="isi">
+                                    <p>Target Date:&nbsp;</p>
+                                    <p>dd-mm-yy</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="container weekly">
+                                    <p>Weekly: &nbsp;</p>
+                                    <p>Rp amount</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="delete">
+                            <svg
+                                width="54"
+                                height="54"
+                                viewBox="0 0 54 54"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </div>
+                    </div> -->
+                    <div class="card">
+                        <div class="default-part">
+                            <div class="left">
+                                <h3>Judul</h3>
+                                <div class="isi">
+                                    <p>Target Amount: Rp&nbsp;</p>
+                                    <p>50,000</p>
+                                </div>
+                                <div class="isi">
+                                    <p>Target Date:&nbsp;</p>
+                                    <p>dd-mm-yy</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="container monthly">
+                                    <p>Monthly: &nbsp;</p>
+                                    <p>Rp amount</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="delete">
+                            <a href="">
+                                <svg
+                                    width="54"
+                                    height="54"
+                                    viewBox="0 0 54 54"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="/financial-planning" style="text-decoration: none">
+                        <div class="card add-dream">
+                            <div class="inner">
+                                <p>Add Your Dream List</p>
+                                <div class="add-btn">
+                                    <svg
+                                        width="32"
+                                        height="32"
+                                        viewBox="0 0 32 32"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M17.6 8H14.4V14.4H8V17.6H14.4V24H17.6V17.6H24V14.4H17.6V8ZM16 0C7.168 0 0 7.168 0 16C0 24.832 7.168 32 16 32C24.832 32 32 24.832 32 16C32 7.168 24.832 0 16 0ZM16 28.8C8.944 28.8 3.2 23.056 3.2 16C3.2 8.944 8.944 3.2 16 3.2C23.056 3.2 28.8 8.944 28.8 16C28.8 23.056 23.056 28.8 16 28.8Z"
+                                            fill="white"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </body>
+    <footer>
+        <section class="footer">
+            <div class="line"></div>
+            <h2>
+                <span class="biru"><strong>Piggy</strong></span> Saver
+            </h2>
+            <div class="bottom-mark">
+                <p>
+                    Made with <span style="color: red">&hearts;</span> by
+                    <span style="font-weight: 600">Nagos Tamel</span>
+                </p>
+            </div>
+        </section>
+    </footer>
+    <script>
+        const navbar = document.querySelector(".navbar");
+        const logo = document.querySelector(".logo-navbar");
+        const body = document.querySelector("body");
+        const menu = document.querySelector(".menu-list");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = () => {
+            menu.classList.add("active");
+            menuBtn.classList.add("hide");
+            cancelBtn.classList.add("show");
+            body.classList.add("disabledScroll");
+        };
+        cancelBtn.onclick = () => {
+            menu.classList.remove("active");
+            menuBtn.classList.remove("hide");
+            cancelBtn.classList.remove("show");
+            body.classList.remove("disabledScroll");
+        };
+
+        window.onscroll = function () {
+            if (this.scrollY > 20) {
+                navbar.classList.add("sticky");
+                navbar.classList.add("shadow");
+                logo.classList.add("shrink");
+            } else {
+                navbar.classList.remove("sticky");
+                navbar.classList.remove("shadow");
+                logo.classList.remove("shrink");
+            }
+        };
+
+        // chart
+        const ctx = document.getElementById("myChart").getContext("2d");
+
+        let gopaySaldo = document.getElementById("dummy-gopay");
+        let ovoSaldo = document.getElementById("dummy-ovo");
+        let bciSaldo = document.getElementById("dummy-bci");
+
+        cashSaldo = 200;
+        gopaySaldo = 500;
+        ovoSaldo = 200;
+        bciSaldo = 200;
+
+        const myChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Cash", "Gopay", "OVO", "BCI"],
+                datasets: [
+                    {
+                        label: "My First Dataset",
+                        data: [cashSaldo, gopaySaldo, ovoSaldo, bciSaldo],
+                        backgroundColor: [
+                            "#C3FFCD",
+                            "#b7eaf6",
+                            "#cbaaff",
+                            "#D9D9D9",
+                        ],
+                        hoverOffset: 4,
+                    },
+                ],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    xAxes: [
+                        {
+                            gridLines: {
+                                display: false,
+                            },
+                        },
+                    ],
+                    yAxes: [
+                        {
+                            gridLines: {
+                                display: false,
+                            },
+                        },
+                    ],
+                },
+            },
+        });
+    </script>
+</html>

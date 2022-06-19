@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DashboardController {
 
     @GetMapping(path = "")
-    public String getDashBoard(Model model) {
+    public String getDashboard(Model model) {
 
         return "dashboard/dashboard";
+    }
+
+    @GetMapping(path = "/dream-piggy")
+    public String getDashboardDreampiggy(Model model) {
+        return "dashboard/dashboard-dream";
     }
 }
