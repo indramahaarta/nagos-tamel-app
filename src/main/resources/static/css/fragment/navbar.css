@@ -139,6 +139,7 @@ nav #sign-up-btn:hover {
 }
 
 nav .menu-list {
+    display: flex;
     list-style: none;
 }
 nav .menu-list li {
