@@ -47,20 +47,12 @@ public class UserController {
         if(authenticatedUser != null){
             var sessionHandling = SessionHandling.getInstance();
             sessionHandling.handleLogin(request,username);
-            return "redirect:/overview-page";
+            return "redirect:/dashboard";
         } else{
             return "redirect:/login";
         }
     }
 
-    @GetMapping("/overview-page")
-    public String getOverviewPage(Model model, HttpSession session){
-        String username = userService.getUsernameFromSession(session);
-        if(username == null){
-            return "redirect:/login";
-        }
-        return "user/overview_page";
-    }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
