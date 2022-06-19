@@ -1,5 +1,6 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.dashboard.service.DashboardService;
 import com.code.nagostamelapp.ovoAuth.controller.OvoAuthController;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.service.UserService;
@@ -19,26 +20,12 @@ public class DashboardController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    DashboardService dashboardService;
+
     @GetMapping(path = "")
     public String getDashBoard(Model model, HttpSession session) throws UnirestException {
-        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
-        String gopayToken = userModel.getGopayToken();
-        String bankBCIToken = userModel.getBCIToken();
-        String ovoToken = userModel.getOvoToken();
-
-        Float ovoBalance = BalanceAPIHandling.getInstance().handleGetBalance(ovoToken, "ovo", session);
-        Float BCIBalance = BalanceAPIHandling.getInstance().handleGetBalance(bankBCIToken, "BCI", session);
-        Float gopayBalance = BalanceAPIHandling.getInstance().handleGetBalance(gopayToken, "gopay", session);
-        Float cashBalance = userModel.getCashBalance();
-        Float total = ovoBalance + gopayBalance + BCIBalance + cashBalance;
-        model.addAttribute("gopay", gopayBalance);
-        model.addAttribute("bci", BCIBalance);
-        model.addAttribute("ovo", ovoBalance);
-        model.addAttribute("total", total);
-        model.addAttribute("cash", cashBalance);
-        model.addAttribute("user", userModel);
-
-
+        dashboardService.wrapModel(model, session);
         return "dashboard/dashboard";
     }
 }

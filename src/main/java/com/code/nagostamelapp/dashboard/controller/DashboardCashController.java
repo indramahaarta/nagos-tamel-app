@@ -1,9 +1,11 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.dashboard.service.DashboardService;
 import com.code.nagostamelapp.transaction.model.Transaction;
 import com.code.nagostamelapp.transaction.service.TransactionService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.service.UserService;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +25,12 @@ public class DashboardCashController {
     @Autowired
     private TransactionService transactionService;
 
+    @Autowired
+    DashboardService dashboardService;
+
     @GetMapping(path = "/cash")
-    private String getTransactionListCash(Model model, HttpSession session) {
+    private String getTransactionListCash(Model model, HttpSession session) throws UnirestException {
+        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
         List<Transaction> transaction = transactionService.sortByDate(username);
         List<TransactionListResponseDTO> response = new ArrayList<>();
@@ -45,7 +51,6 @@ public class DashboardCashController {
         }
 
         model.addAttribute("response", response);
-
         return "dashboard/dashboard-cash";
     }
 }

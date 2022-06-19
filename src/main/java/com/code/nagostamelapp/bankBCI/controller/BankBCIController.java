@@ -39,6 +39,7 @@ public class BankBCIController {
     public String postAuthBCIPage(@RequestParam(value = "user") String user, @RequestParam(value = "password") String password, HttpSession session) throws UnirestException {
         JSONObject myObj = AuthAPIHandling.getInstance().handleAuthBank("24", user, password);
         int status = myObj.getInt("status");
+        System.out.println(myObj);
         if(status == 200){
             String user_token_BCI = myObj.getString("data");
             UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));

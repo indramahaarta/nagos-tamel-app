@@ -1,5 +1,6 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.dashboard.service.DashboardService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.service.UserService;
@@ -27,8 +28,12 @@ public class DashboardBankBCIController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    DashboardService dashboardService;
+
     @GetMapping(path = "/bankBCI")
     public String getTransactionListGopay(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
+        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
         UserModel user = userService.getUserByUsername(username);
         String bciToken = user.getBCIToken();
@@ -69,7 +74,6 @@ public class DashboardBankBCIController {
             }
 
             model.addAttribute("response", response);
-
             return "dashboard/dashboard-bankBCI";
         } else if (status == 400 &&  myObj.getString("error_message").equals("Date parameter format is invalid")){
             return "redirect:/dashboard/bankCLI?error1";
@@ -78,7 +82,6 @@ public class DashboardBankBCIController {
         } else if (status == 401 && myObj.getString("error_message").equals("Invalid user-access-token")) {
             return "redirect:/auth-BCI";
         }
-
         return "redirect:/dashboard/bankBCI";
     }
 }

@@ -1,5 +1,6 @@
 package com.code.nagostamelapp.dashboard.controller;
 
+import com.code.nagostamelapp.dashboard.service.DashboardService;
 import com.code.nagostamelapp.transactionList.model.dto.TransactionListResponseDTO;
 import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.service.UserService;
@@ -27,8 +28,12 @@ public class DashboardGopayController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    DashboardService dashboardService;
+
     @GetMapping(path = "/gopay")
     public String getTransactionListGopay(HttpServletRequest request, HttpSession session, Model model) throws UnirestException {
+        dashboardService.wrapModel(model, session);
         String username = userService.getUsernameFromSession(session);
         UserModel user = userService.getUserByUsername(username);
         String gopayToken = user.getGopayToken();
@@ -78,7 +83,6 @@ public class DashboardGopayController {
         } else if (status == 401 && myObj.getString("error_message").equals("Invalid user-access-token")) {
             return "redirect:/gopay-OTP";
         }
-
         return "redirect:/dashboard/gopay";
     }
 }
