@@ -202,47 +202,42 @@
                 <button class="button" style="border: none">BCI</button>
             </a>
         </div>
-        <div class="card">
-            <div class="default-part">
-                <div class="left">
-                    <h3>Judul</h3>
-                    <p>dd-mm-yy</p>
-                </div>
-                <div class="right">
-                    <div class="container out">
-                        <p>-&nbsp;</p>
-                        <p>Rp amount</p>
-                    </div>
-                </div>
-            </div>
-            <div class="delete">
-                <svg
-                        width="54"
-                        height="54"
-                        viewBox="0 0 54 54"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                            d="M13.5 42.75C13.5 45.225 15.525 47.25 18 47.25H36C38.475 47.25 40.5 45.225 40.5 42.75V15.75H13.5V42.75ZM19.035 26.73L22.2075 23.5575L27 28.3275L31.77 23.5575L34.9425 26.73L30.1725 31.5L34.9425 36.27L31.77 39.4425L27 34.6725L22.23 39.4425L19.0575 36.27L23.8275 31.5L19.035 26.73ZM34.875 9L32.625 6.75H21.375L19.125 9H11.25V13.5H42.75V9H34.875Z"
-                            fill="white"
-                    />
-                </svg>
-            </div>
+        <div th:if="${response.size()} ==  0">
+            No Data :)
         </div>
-        <div class="card">
-            <div class="default-part">
-                <div class="left">
-                    <h3>Judul</h3>
-                    <p>dd-mm-yy</p>
-                </div>
-                <div class="right">
-                    <div class="container in">
-                        <p>+&nbsp;</p>
-                        <p>Rp amount</p>
+        <div th:if="${response.size()} > 0" th:each="i:${#numbers.sequence(response.size()-1, 0)}">
+            <!-- out-->
+            <div class="card" th:if="${response.get(i).direction == 'out'}">
+                <div class="default-part">
+                    <div class="left">
+                        <h3 th:text="${response.get(i).description}">Judul</h3>
+                        <p th:text="${response.get(i).date}">dd-mm-yy</p>
+                    </div>
+                    <div class="right">
+                        <div class="container out">
+                            <p>-&nbsp;</p>
+                            <p th:text="${response.get(i).amountStr}">Rp amount</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- in-->
+            <div class="card" th:if="${response.get(i).direction == 'in'}">
+                <div class="default-part">
+                    <div class="left">
+                        <h3 th:text="${response.get(i).description}">Judul</h3>
+                        <p th:text="${response.get(i).date}">dd-mm-yy</p>
+                    </div>
+                    <div class="right">
+                        <div class="container in">
+                            <p>+&nbsp;</p>
+                            <p th:text="${response.get(i).amountStr}">Rp amount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
