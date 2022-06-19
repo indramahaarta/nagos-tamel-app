@@ -4,6 +4,7 @@ import com.code.nagostamelapp.user.model.UserModel;
 import com.code.nagostamelapp.user.repository.UserRepository;
 import com.code.nagostamelapp.user.service.UserService;
 import com.code.nagostamelapp.util.AuthAPIHandling;
+import com.code.nagostamelapp.util.BalanceAPIHandling;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +98,15 @@ public class GopayController {
             return "redirect:/insertGopay?error5";
         }
         return "redirect:/insertGopay?error3";
+    }
+
+    @GetMapping("/get-balance-gopay")
+    public float getGopayBalance(HttpSession session) throws UnirestException {
+        UserModel userModel = userService.getUserByUsername(userService.getUsernameFromSession(session));
+        String gopayToken = userModel.getGopayToken();
+        float balance  = BalanceAPIHandling.getInstance().handleGetBalance(gopayToken, "gopay", session);
+        userModel.setGopayBalance(balance);
+        userRepository.save(userModel);
+        return balance;
     }
 }
